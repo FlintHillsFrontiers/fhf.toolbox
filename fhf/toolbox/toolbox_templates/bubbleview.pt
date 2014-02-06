@@ -1,0 +1,113 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en"
+      xmlns:tal="http://xml.zope.org/namespaces/tal"
+      xmlns:metal="http://xml.zope.org/namespaces/metal"
+      xmlns:i18n="http://xml.zope.org/namespaces/i18n"
+      lang="en"
+      metal:use-macro="context/main_template/macros/master"
+      i18n:domain="fhf.toolbox">
+<head>
+  <metal:slot metal:fill-slot="style_slot">
+    <link rel="stylesheet" type="text/css" media="screen"    
+          href="/++resource++fhf.toolbox/bubbleview.css" />
+    <link rel="stylesheet" type="text/css" media="screen"    
+          href="/++resource++fhf.toolbox/votecount.css" />
+  </metal:slot>
+
+  <metal:slot metal:fill-slot="javascript_head_slot">
+    <!-- <script src="http://cdn.jquerytools.org/1.2.7/tiny/jquery.tools.min.js"></script> -->
+    <script type="text/javascript">jq(document).ready(function() {
+      jq('.scrollable').scrollable({
+        keyboard: false,
+        circular: false,
+        vertical: true,
+        });
+      });
+    </script>
+  </metal:slot>
+</head>
+
+<body>
+
+<tal:comment tal:condition="nothing">
+    This is a bubble view tempate that list tools in summary bubbles.
+</tal:comment>
+
+<metal:main fill-slot="content-core">
+  <metal:content-core define-macro="content-core">
+
+    <div id="filters">
+      <h2>Filters</h2>
+      <h3>Issue Areas</h3>
+      <label><input value="all" name="ia" type="radio"/>All</label><br />
+      <label><input value="natural" name="ia" type="radio"/>
+        Natural Systems
+      </label>
+      <label><input value="social" name="ia" type="radio"/>
+        Social Systems
+      </label>
+      <label><input value="cultural" name="ia" type="radio"/>
+        Cultural Systems</label>
+      <label><input value="farm" name="ia" type="radio"/>
+        Farm and Ranch</label>
+      <label><input value="mobility" name="ia" type="radio"/>
+        Mobility and Transportation
+      </label>
+      <label><input value="opportunity" name="ia" type="radio"/>
+        Economic Opportunity
+      </label>
+      <label><input value="built" name="ia" type="radio"/>
+        Built Environment
+      </label>
+      <h3>Audience</h3>
+      <label><input value="all" name="audience" type="radio"/>All</label><br />
+      <label><input value="citizen" name="audience" type="radio"/>
+        Citizen Leader
+      </label>
+      <label><input value="local" name="audience" type="radio"/>
+        Local Government
+      </label>
+      <label><input value="state" name="audience" type="radio"/>
+        State Government
+      </label>
+      <label><input value="fed" name="audience" type="radio"/>
+        Federal and Tribal Government
+      </label>
+      <label><input value="org" name="audience" type="radio"/>
+        Community Organization
+      </label>
+      <label><input value="planning" name="audience" type="radio"/>
+        Planning and Development Organization
+      </label>
+      <label><input value="ed" name="audience" type="radio"/>
+        Educational Organization
+      </label>
+      <label><input value="owner" name="audience" type="radio"/>
+        Property Owner
+      </label>
+    </div>
+
+    <div class="scroll-controls">
+      <a class="prev browse" href="#" onclick="return false;">prev</a>
+      <a class="next browse" href="#" onclick="return false;">next</a>
+    </div>
+    <!-- root element for scrollable -->
+    <div class="scrollable vertical">
+
+      <!-- root element for the tools -->
+      <div id="tool-listing">
+
+        <!-- a summary view of each tool -->
+        <tal:block repeat="t view/tools">
+          <div tal:replace="structure t/@@shortview/renderBubble"/>
+        </tal:block>
+
+      </div>
+
+    </div>
+
+  </metal:content-core>
+</metal:main>
+
+</body>
+</html>
+

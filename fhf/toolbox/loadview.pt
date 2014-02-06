@@ -1,0 +1,28 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en"
+      xmlns:tal="http://xml.zope.org/namespaces/tal"
+      xmlns:metal="http://xml.zope.org/namespaces/metal"
+      xmlns:i18n="http://xml.zope.org/namespaces/i18n"
+      lang="en"
+      metal:use-macro="context/main_template/macros/master"
+      i18n:domain="fhf.toolbox">
+<body>
+
+<tal:comment tal:condition="nothing">
+    This is a bubble view tempate that list tools in summary bubbles.
+</tal:comment>
+
+<metal:main fill-slot="content-core">
+  <metal:content-core define-macro="content-core">
+
+    <h2>Load Tools from FHF Spreadsheet</h2>
+
+    <p>Warning: this reloads all tools from spreadsheet.  Please Confirm.</p>
+
+    <p><a tal:attributes="view/absolute_url()">CLICK</a></p>
+
+  </metal:content-core>
+</metal:main>
+
+</body>
+</html>
+

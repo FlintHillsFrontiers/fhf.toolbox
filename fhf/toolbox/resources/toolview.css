@@ -1,0 +1,43 @@
+#tool-navigation {
+    border-bottom: 2px solid #ddd;
+    height: 1.5em;
+    margin-bottom: 1em;
+}
+
+#tool-navigation .prev {
+    float: left;
+    width: 40%;
+}
+
+#tool-navigation .all {
+    float: left;
+}
+
+#tool-navigation .next {
+    float: right;
+}
+
+#tool-header {
+}
+
+#tool-header img {
+    display: none;
+}
+
+#voting-block {
+    float: right;
+    width: 20%;
+}
+
+img#upvote {
+}
+
+img#novote {
+    display:none;
+}
+
+.wrapper {
+    padding-bottom: 1em;
+}
+
+

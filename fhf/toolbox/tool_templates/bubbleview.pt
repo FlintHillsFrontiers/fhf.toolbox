@@ -1,0 +1,20 @@
+<tal:comment tal:condition="nothing">
+   This is a HTML snippet used to render a summary view of a Tool for
+   use within a vertically scrolled list. 
+</tal:comment>
+
+<div class="items tool-bubble">
+  <div class="issue-area-icon">
+    <img tal:attributes="src string:${context/get_icon}/image_icon" />
+  </div>
+  <div class="issue-area" tal:content="context/issue_area">Issue Area</div>
+  <a class="tool" href="#" tal:attributes="href context/absolute_url"
+    tal:content="context/Title">Title inserted here</a>
+  <div class="votecount">
+    <div class="votes" tal:content="context/votes">0</div>
+    <div class="label">votes</div>
+  </div>
+  <div class="description" tal:content="structure context/overview/output">
+    Description
+  </div>
+</div>

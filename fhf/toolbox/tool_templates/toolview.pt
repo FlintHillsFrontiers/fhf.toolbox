@@ -1,0 +1,120 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en"
+      xmlns:tal="http://xml.zope.org/namespaces/tal"
+      xmlns:metal="http://xml.zope.org/namespaces/metal"
+      xmlns:i18n="http://xml.zope.org/namespaces/i18n"
+      lang="en"
+      metal:use-macro="context/main_template/macros/master"
+      i18n:domain="fhf.toolbox">
+<head>
+  <metal:slot metal:fill-slot="style_slot">
+    <link rel="stylesheet" type="text/css" media="screen"
+          href="/++resource++fhf.toolbox/toolview.css"/>
+    <link rel="stylesheet" type="text/css" media="screen"
+          href="/++resource++fhf.toolbox/votecount.css"/>
+  </metal:slot>
+
+  <metal:slot metal:fill-slot="javascript_head_slot">
+  </metal:slot>
+</head>
+
+<body>
+<tal:comment tal:condition="nothing">
+    The default view for the FHF Community Toolbox Tool.
+</tal:comment>
+
+<metal:main fill-slot="content-core">
+  <metal:content-core define-macro="content-core">
+    <div id="tool-navigation">
+      <a class="prev" tal:attributes="href view/prev" >prev</a>
+      <a class="all" tal:attributes="href view/all" >up (all tools)</a>
+      <a class="next" tal:attributes="href view/next" >next</a>
+    </div>
+
+    <div id="voting-block">
+      <img id="upvote" src="++resource++fhf.toolbox/upvote.png">
+      <img id="novote" src="++resource++fhf.toolbox/novote.png">
+      <div class="votecount">
+        <div class="votes" tal:content="context/votes">0</div>
+        <div class="label">votes</div>
+      </div>
+      <div class="help">Help prioritize our work by voting for
+        your favorite tool.
+      </div>
+    </div>
+
+    <div id="tool-header">
+      <img tal:attributes="src string:${context/get_icon}/image_preview" />
+      <div class="wrapper">
+        <div class="label">Issue Area</div>
+        <div id="issue_area" tal:content="context/issue_area">Title</div>
+      </div>
+      <div class="wrapper">
+        <div class="label">Audience</div>
+        <div id="audience" tal:content="python:','.join(context.audience)">
+      </div>
+    </div>
+
+    <div class="wrapper" tal:condition="context/goals">
+      <h2 class="label">Goals</h2>
+      <div id="goals" tal:content="context/goals">Goals</div>
+    </div>
+
+    <div class="wrapper">
+      <h2 class="label">Description</h2>
+      <div id="description" tal:content="context/overview/output">
+        Description
+      </div>
+    </div>
+
+    <div class="wrapper" tal:condition="context/background">
+      <h2 class="label">Background</h2>
+      <div id="background" tal:content="structure context/background">
+        Background
+      </div>
+    </div>
+
+    <div class="wrapper" tal:condition="context/case_study">
+      <h2 class="label">Case Studies</h2>
+      <div id="background" tal:content="structure context/case_study/output">
+        Case Study
+      </div>
+    </div>
+
+    <div class="wrapper" tal:condition="context/step_1">
+      <h2 class="divider">Implementation Details</h2>
+      <p>A brief outlines of the first few steps necessary for implementation
+         are provided when feasiable.  The steps outlined here are provided
+         only as a suggested starting point and other approaches are certainly
+         valid.
+      </p>
+      <div class="wrapper">
+        <h2 class="label">Step 1</h2>
+        <div id="step_1" tal:content="structure context/step_1/output">
+          Step
+        </div>
+      </div>
+      <div class="wrapper">
+        <h2 class="label">Step 2</h2>
+        <div id="step_2" tal:content="structure context/step_2/output">
+          Step
+        </div>
+      </div>
+      <div class="wrapper">
+        <h2 class="label">Step 3</h2>
+        <div id="step_3" tal:content="structure context/step_3/output">
+          Step
+        </div>
+      </div>
+    </div>
+
+    <div class="wrapper" tal:condition="context/resources">
+      <h2 class="label">Resources</h2>
+      <div id="resources" tal:content="context/resources">Resources</div>
+    </div>
+
+  </metal:content-core>
+</metal:main>
+
+</body>
+</html>
+

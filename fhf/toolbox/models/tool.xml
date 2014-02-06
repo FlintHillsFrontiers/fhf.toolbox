@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<model xmlns="http://namespaces.plone.org/supermodel/schema"
+       xmlns:form="http://namespaces.plone.org/supermodel/form"
+       xmlns:security="http://namespaces.plone.org/supermodel/security">
+  <schema>
+    <field name="title" type="zope.schema.TextLine">
+      <description>Tool</description>
+      <title>Title</title>
+    </field>
+    <field name="issue_area" type="zope.schema.Choice">
+      <description>Flint Hills Frontier's defined Issue Area </description>
+      <title>Issue Area</title>
+      <values>
+        <element>Natural Systems</element>
+        <element>Social Systems</element>
+        <element>Cultural Systems</element>
+        <element>Farm and Ranch</element>
+        <element>Economic Opportunity</element>
+        <element>Mobility and Transportation</element>
+        <element>Built Environment</element>
+      </values>
+    </field>
+    <field name="goals" type="zope.schema.Text">
+      <description>brief description of goals or objectives</description>
+      <title>Goals</title>
+    </field>
+    <field name="audience" type="zope.schema.List">
+      <description>Intended audience (a tool my be listed more than once for difference audiences).</description>
+      <title>Audience</title>
+      <default>All</default>
+      <value_type type="zope.schema.Choice">
+        <values>
+          <element>All</element>
+          <element>Citizen Leaders</element>
+          <element>Local Government</element>
+          <element>State Government</element>
+          <element>Federal and Tribal Government</element>
+          <element>Community Organizations</element>
+          <element>Planning and Development Organizations</element>
+          <element>Educational Organizations</element>
+          <element>Property Owners</element>
+        </values>
+      </value_type>
+    </field>
+    <field name="overview" type="plone.app.textfield.RichText">
+      <description>Brief description of the tool.</description>
+      <title>Description</title>
+    </field>
+    <field name="background" type="plone.app.textfield.RichText">
+      <description>Background of tool or concept</description>
+      <required>False</required>
+      <title>Background</title>
+    </field>
+    <field name="case_study" type="plone.app.textfield.RichText">
+      <description>Examples where other groups have used the tool</description>
+      <required>False</required>
+      <title>Case Studies</title>
+    </field>
+    <fieldset name="implementation"
+              label="Implementation Strategy">
+      <field name="step_1" type="plone.app.textfield.RichText">
+        <description />
+        <required>False</required>
+        <title>Step 1</title>
+      </field>
+      <field name="step_2" type="plone.app.textfield.RichText">
+        <description />
+        <required>False</required>
+        <title>Step 2</title>
+      </field>
+      <field name="step_3" type="plone.app.textfield.RichText">
+        <description />
+        <required>False</required>
+        <title>Step 3</title>
+      </field>
+    </fieldset>
+    <field name="resources" type="zope.schema.Text">
+      <description>Links to other resources about the tool</description>
+      <required>False</required>
+      <title>Resources</title>
+    </field>
+    <field name="votes" type="zope.schema.Int"
+      form:omitted="true">
+      <description>a simple voting mechanism</description>
+      <default>0</default>
+      <required>False</required>
+      <title>Votes</title>
+    </field>
+  </schema>
+</model>
