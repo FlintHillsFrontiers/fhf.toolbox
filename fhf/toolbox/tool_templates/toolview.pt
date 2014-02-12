@@ -26,7 +26,8 @@
   <metal:content-core define-macro="content-core">
     <div id="tool-navigation">
       <a class="prev" tal:attributes="href view/prev" >prev</a>
-      <a class="all" tal:attributes="href view/all" >up (all tools)</a>
+      <!--<a class="all" tal:attributes="href python:context.aq_inner.aq_parent.absolute_url()" >up (all tools)</a>-->
+      <a class="all" tal:attributes="href container/absolute_url">up (all tools)</a>
       <a class="next" tal:attributes="href view/next" >next</a>
     </div>
 

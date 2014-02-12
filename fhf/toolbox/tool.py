@@ -51,7 +51,7 @@ class Tool(Item):
             return '/fhf/issue-areas/social-icon'
         elif self.issue_area == 'Cultural Systems':
             return '/fhf/issue-areas/cultural-icon'
-        elif self.issue_area == 'Farm and Ranch':
+        elif self.issue_area == 'Farming and Ranching':
             return '/fhf/issue-areas/farm-icon'
         elif self.issue_area == 'Mobility and Transportation':
             return '/fhf/issue-areas/mobility-icon'
@@ -97,6 +97,14 @@ class ShortView(grok.View):
     grok.require('zope2.View')
 
     bubbleTemplate = grok.PageTemplateFile("tool_templates/bubbleview.pt")
+
+    def shortDesc(self, description):
+        d = description.split()
+        if len(d) > 100:
+            description = ' '.join(d[:100]) + '...'
+
+        return description
+            
 
     def renderBubble(self):
         return self.bubbleTemplate.render(self)

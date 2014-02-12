@@ -17,6 +17,28 @@
     border-top:2px solid #ddd;
 }
 
+#filter-column {
+    width: 25%;
+    float: left;
+    margin-top: 12px;
+}
+
+.filter-label {
+    font-weight: bold;
+    font-size: 1.2em;
+    margin-bottom: .2em;
+}
+
+.cb-text-filter {
+    border: none !important;
+    margin-bottom: 1em;
+}
+
+#listing-column {
+    width: 72%;
+    float: right;
+}
+
 /* root element for scrollable items */
 #tool-listing {
     position:absolute;
@@ -28,7 +50,9 @@
 
 /* single scrollable item */
 .tool-bubble {
-    border-bottom:2px solid #ddd;
+    position: relative;
+    background-color: #ccc;
+    border-radius: 8px;
     margin:10px 0;
     padding:15px;
     font-size:12px;
@@ -36,6 +60,7 @@
 }
 
 .tool-bubble .issue-area-icon {
+    margin-top: -6px;
     float: left;
     width: 10%;
 }
@@ -45,19 +70,39 @@
     display: none;
 }
 
+.tool-bubble .updated {
+    float: right;
+}
+
+.tool-bubble .mod-date {
+    font-weight: bold;
+}
+
+.tool-bubble .audience {
+    float: left;
+    display: none;
+}
+
 .tool-bubble .tool {
     float: left;
     width: 60%;
+    font-size: 1.2em
+}
+
+.modified {
+    float: right;
 }
 
 .votecount {
-    float: right;
+    position: absolute;
+    bottom: 5%;
+    right: 2%;
+    width: 15%;
 }
 
 .tool-bubble .description {
     clear: both;
     padding-top: 10px;
-
 }
 
 #filters label {

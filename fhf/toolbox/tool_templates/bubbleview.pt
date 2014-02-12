@@ -3,18 +3,21 @@
    use within a vertically scrolled list. 
 </tal:comment>
 
-<div class="items tool-bubble">
+<div class="tool-bubble box">
   <div class="issue-area-icon">
     <img tal:attributes="src string:${context/get_icon}/image_icon" />
   </div>
   <div class="issue-area" tal:content="context/issue_area">Issue Area</div>
+  <div class="audience" tal:content="python:', '.join(context.audience)">Audience</div>
+  <div class="updated">Updated: <span class="mod-date">Jan 14, 2014</span></div>
   <a class="tool" href="#" tal:attributes="href context/absolute_url"
-    tal:content="context/Title">Title inserted here</a>
+    tal:content="context/Title">Title</a>
+  <div class="description" 
+    tal:content="structure python:view.shortDesc(context.overview.output)">
+    Description
+  </div>
   <div class="votecount">
     <div class="votes" tal:content="context/votes">0</div>
     <div class="label">votes</div>
-  </div>
-  <div class="description" tal:content="structure context/overview/output">
-    Description
   </div>
 </div>
