@@ -44,6 +44,20 @@ class ITool(form.Schema, IImageScaleTraversable):
 class Tool(Item):
     grok.implements(ITool)
 
+    def check_rating(self, val):
+        "simple mechanism for setting checked in the rating system"
+        if self.rating == val:
+            return "checked"
+        else:
+            return ""
+
+    def user_rating(self, val):
+        "simple mechanism for setting checked in the rating system"
+        if self.rating == val:
+            return "checked"
+        else:
+            return ""
+
     def get_icon(self):
         if self.issue_area == 'Natural Systems':
             return '/fhf/issue-areas/natural-icon'
@@ -81,13 +95,22 @@ class ToolView(grok.View):
     grok.require('zope2.View')
 
     def prev(self):
-        return "blah"
+        ids = [b['id'] for b in self.context.aq_parent.getFolderContents()]
+        idx = ids.index(self.context.getId())    
 
-    def all(self):
-        return "blah"
+        if idx == 0: 
+            return ""
+        else:
+            return ids[idx-1]
 
     def next(self):
-        return "blah"
+        ids = [b['id'] for b in self.context.aq_parent.getFolderContents()]
+        idx = ids.index(self.context.getId())    
+
+        if idx+1 == len(ids):
+            return ""
+        else:
+            return ids[idx+1]
 
 
 class ShortView(grok.View):

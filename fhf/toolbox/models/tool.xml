@@ -79,10 +79,14 @@
       <required>False</required>
       <title>Resources</title>
     </field>
-    <field name="votes" type="zope.schema.Int"
-      form:omitted="true">
-      <description>a simple voting mechanism</description>
+    <field name="rating" type="zope.schema.Int"> <!-- form:omitted="true"> -->
+      <description>current rating</description>
       <default>0</default>
+      <required>False</required>
+      <title>Rating</title>
+    </field>
+    <field name="votes" type="zope.schema.List"> <!-- form:omitted="true"> -->
+      <description>a list of tuples with (rating, IP address)</description>
       <required>False</required>
       <title>Votes</title>
     </field>

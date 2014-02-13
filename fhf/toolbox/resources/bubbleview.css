@@ -56,7 +56,6 @@
     margin:10px 0;
     padding:15px;
     font-size:12px;
-    height:180px;
 }
 
 .tool-bubble .issue-area-icon {
@@ -71,7 +70,8 @@
 }
 
 .tool-bubble .updated {
-    float: right;
+    text-align: right;
+    margin-top: 1em;
 }
 
 .tool-bubble .mod-date {
@@ -146,5 +146,9 @@
 }
 
 .next {
+    float:right;
+}
+
+.tool-rating {
     float:right;
 }

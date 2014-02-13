@@ -1,5 +1,5 @@
 .drop-down{float:left;width:130px;height:22px;border:1px solid #ddd;margin:5px 20px 5px 0;}
-.drop-down .panel{float:left;width:125px;height:22px;line-height:22px;overflow:hidden;background:#fff url("../img/icons/down.png") no-repeat 99% 50%;cursor:pointer;margin:0;padding:0 0 0 5px}
+.drop-down .panel{float:left;width:125px;height:22px;line-height:22px;overflow:hidden;background:#fff url("down.png") no-repeat 99% 50%;cursor:pointer;margin:0;padding:0 0 0 5px}
 .drop-down ul{position:relative;top:0;left:-1px;z-index:1000;width:130px;display:none;overflow:hidden;background-color:#fff;border:1px solid #ccc;list-style:none;border-radius:0 0 3px 3px;margin:0;padding:0;}
 .drop-down ul li{cursor:pointer;width:130px;float:left;background-color:#fff;padding:0 0 0 5px}
 .drop-down ul li:hover{background-color:#ececec}

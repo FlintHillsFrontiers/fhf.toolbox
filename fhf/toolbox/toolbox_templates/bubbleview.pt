@@ -12,11 +12,12 @@
     <link rel="stylesheet" type="text/css" media="screen"    
           href="/++resource++fhf.toolbox/bubbleview.css" />
     <link rel="stylesheet" type="text/css" media="screen"    
-          href="/++resource++fhf.toolbox/votecount.css" />
+          href="/++resource++fhf.toolbox/jquery.rating.css" />
   </metal:slot>
 
   <metal:slot metal:fill-slot="javascript_head_slot">
     <script src="/++resource++fhf.toolbox/jplist.min.js"></script>
+    <script src="/++resource++fhf.toolbox/jquery.rating.pack.js"></script>
 
     <script type="text/javascript">jq("document").ready(function() {
       $('#toolbox').jplist({	

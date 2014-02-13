@@ -2,6 +2,8 @@
     border-bottom: 2px solid #ddd;
     height: 1.5em;
     margin-bottom: 1em;
+    font-size: 120%;
+    padding: 0 2%;
 }
 
 #tool-navigation .prev {
@@ -21,20 +23,14 @@
 }
 
 #tool-header img {
-    display: none;
+    float: left;
+    margin-right: 3%;
 }
 
-#voting-block {
+.tool-rating {
     float: right;
-    width: 20%;
 }
 
-img#upvote {
-}
-
-img#novote {
-    display:none;
-}
 
 .wrapper {
     padding-bottom: 1em;
