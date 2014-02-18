@@ -3,18 +3,25 @@
    use within a vertically scrolled list. 
 </tal:comment>
 
-<div class="items tool-bubble">
+<div class="tool-bubble box">
   <div class="issue-area-icon">
     <img tal:attributes="src string:${context/get_icon}/image_icon" />
   </div>
   <div class="issue-area" tal:content="context/issue_area">Issue Area</div>
-  <a class="tool" href="#" tal:attributes="href context/absolute_url"
-    tal:content="context/Title">Title inserted here</a>
-  <div class="votecount">
-    <div class="votes" tal:content="context/votes">0</div>
-    <div class="label">votes</div>
+  <div class="votes">(<span tal:content="context/vcount">0</span> votes)</div>
+  <div class="rateit" tal:attributes="data-rateit-value context/rating"
+       data-rateit-ispreset="true" data-rateit-readonly="true"></div>
+  <div class="audience" tal:content="python:', '.join(context.audience)">
+    Audience Comma Seperated String
   </div>
-  <div class="description" tal:content="structure context/overview/output">
+  <a class="tool" href="#" tal:attributes="href context/absolute_url"
+    tal:content="context/Title">Title</a>
+  <div class="description" 
+    tal:content="structure python:view.shortDesc(context.overview.output)">
     Description
   </div>
+  <!--
+  <div class="updated">Last Updated: <span tal:content="context/modified" class="mod-date">Jan 14, 2014</span></div>
+  -->
+  <div class="updated">Last Updated: <span tal:content="python:context.toLocalizedTime(context.modified())" class="mod-date">Jan 14, 2014</span></div>
 </div>

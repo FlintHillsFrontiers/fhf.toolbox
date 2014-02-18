@@ -102,23 +102,28 @@ class LoadView(grok.View):
     grok.context(IToolbox)
     grok.require('zope2.View')
 
-    def load(self):
-        """ Reloads all the tools from the Google Spreadsheet
-        """
-        import gspread
-        #import pdb; pdb.set_trace()
+    def load_wks(self, wks, issue_area):
+        for rec in wks.get_all_values()[2:]:
 
-        gc = gspread.login('jeff.terstriep@gmail.com','qfasbwmegcadaujw')
-        ss = gc.open('130905.CommunityToolboxSpreadsheet')
-
-        wks = ss.worksheet('Natural Systems')
-        for rec in wks.get_all_values():
-            if rec[0] == 'Natural Systems' or rec[0] == 'Tool':
+            # skip empty description lines
+            if rec[3] == '':
                 continue
-            audience = [unicode(s.strip()) for s in rec[2].split(',')]
+
+            # cleanup audience so All and empty map to all audiences
+            if rec[2] == '' or rec[2] == 'All':
+                audience = [u'Citizen Leader', u'Local Government',
+                            u'State Government', u'Federal and Tribal Gov',
+                            u'Community Organization',
+                            u'Planning and Development Org',
+                            u'Educational Organization',
+                            u'Property Owner',
+                            ]
+            else:
+                audience = [unicode(s.strip()) for s in rec[2].split(',')]
+
             createContentInContainer(self.context, 'fhf.toolbox.tool',
                 title = unicode(rec[0]),
-                issue_area = unicode('Natural Systems'),
+                issue_area = unicode(issue_area),
                 goals = unicode(rec[1]),
                 audience = audience,
                 overview = RichTextValue(unicode(rec[3])),
@@ -128,3 +133,22 @@ class LoadView(grok.View):
                 resouces = unicode(rec[7]),
                 case_study = RichTextValue(unicode(rec[8])),
                 )
+
+
+    def load(self):
+        """ Reloads all the tools from the Google Spreadsheet
+        """
+        import gspread
+        #import pdb; pdb.set_trace()
+
+        gc = gspread.login('jeff.terstriep@gmail.com','qfasbwmegcadaujw')
+        ss = gc.open('130905.CommunityToolboxSpreadsheet')
+
+        self.load_wks(ss.worksheet('Natural Systems'), 'Natural Systems') 
+        self.load_wks(ss.worksheet('Social Systems'), 'Social Systems') 
+        self.load_wks(ss.worksheet('Cultural Systems'), 'Cultural Systems') 
+        self.load_wks(ss.worksheet('Farm&Ranch'), 'Farming and Ranching') 
+        self.load_wks(ss.worksheet('Opportunity'), 'Economic Opportunity') 
+        self.load_wks(ss.worksheet('Mobility&Transportation'), 'Mobility and Transportation') 
+        self.load_wks(ss.worksheet('Built Environment'), 'Built Environment') 
+            
