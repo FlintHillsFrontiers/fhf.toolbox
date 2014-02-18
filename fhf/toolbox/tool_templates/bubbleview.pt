@@ -8,23 +8,9 @@
     <img tal:attributes="src string:${context/get_icon}/image_icon" />
   </div>
   <div class="issue-area" tal:content="context/issue_area">Issue Area</div>
-  <div class="tool-rating">
-    <input tal:attributes="name string:${context/id}-rating
-                           checked python:context.check_rating(1)"
-           disabled="disabled" type="radio" class="star"/>
-    <input tal:attributes="name string:${context/id}-rating;
-                           checked python:context.check_rating(2)"
-           disabled="disabled" type="radio" class="star"/>
-    <input tal:attributes="name string:${context/id}-rating
-                           checked python:context.check_rating(3)"
-           disabled="disabled" type="radio" class="star"/>
-    <input tal:attributes="name string:${context/id}-rating
-                           checked python:context.check_rating(4)"
-           disabled="disabled" type="radio" class="star"/>
-    <input tal:attributes="name string:${context/id}-rating
-                           checked python:context.check_rating(5)"
-           disabled="disabled" type="radio" class="star"/>
-  </div>
+  <div class="votes">(<span tal:content="context/vcount">0</span> votes)</div>
+  <div class="rateit" tal:attributes="data-rateit-value context/rating"
+       data-rateit-ispreset="true" data-rateit-readonly="true"></div>
   <div class="audience" tal:content="python:', '.join(context.audience)">
     Audience Comma Seperated String
   </div>

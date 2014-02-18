@@ -58,6 +58,14 @@
     font-size:12px;
 }
 
+.tool-bubble .rateit {
+    float: right;
+}
+
+.tool-bubble .votes {
+    float: right;
+}
+
 .tool-bubble .issue-area-icon {
     margin-top: -6px;
     float: left;

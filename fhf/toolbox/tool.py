@@ -1,3 +1,5 @@
+import json
+from datetime import datetime
 from five import grok
 
 from z3c.form import group, field
@@ -44,35 +46,50 @@ class ITool(form.Schema, IImageScaleTraversable):
 class Tool(Item):
     grok.implements(ITool)
 
-    def check_rating(self, val):
-        "simple mechanism for setting checked in the rating system"
-        if self.rating == val:
-            return "checked"
-        else:
-            return ""
+    def vcount(self):
+        """Return the number of votes."""
 
-    def user_rating(self, val):
-        "simple mechanism for setting checked in the rating system"
-        if self.rating == val:
-            return "checked"
+        if self.votes:
+            return len(self.votes)
         else:
-            return ""
+            return 0
+
+    def audience_all(self):
+        """Return CSV of audiences or All if appropriate
+
+        Warning: should be using vocabularies this uses a hard-coded number.
+        """
+
+        if len(self.audience) == 8:
+            return "All"
+        else:
+            return ', '.join(self.audience)
+
 
     def get_icon(self):
+        """Return the issue area icon.
+
+        Ugly hard-coded mapping from issue area to icon URL.
+        """
+
+        # workaround to include Plone site if necessary
+        if self.getPhysicalPath()[1] == 'fhf':
+            site = '/fhf'
+
         if self.issue_area == 'Natural Systems':
-            return '/fhf/issue-areas/natural-icon'
+            return site + '/issue-areas/natural-icon'
         elif self.issue_area == 'Social Systems':
-            return '/fhf/issue-areas/social-icon'
+            return site + '/issue-areas/social-icon'
         elif self.issue_area == 'Cultural Systems':
-            return '/fhf/issue-areas/cultural-icon'
+            return site + '/issue-areas/cultural-icon'
         elif self.issue_area == 'Farming and Ranching':
-            return '/fhf/issue-areas/farm-icon'
+            return site + '/issue-areas/farm-icon'
         elif self.issue_area == 'Mobility and Transportation':
-            return '/fhf/issue-areas/mobility-icon'
+            return site + '/issue-areas/mobility-icon'
         elif self.issue_area == 'Economic Opportunity':
-            return '/fhf/issue-areas/opportunity-icon'
+            return site + '/issue-areas/opportunity-icon'
         elif self.issue_area == 'Built Environment':
-            return '/fhf/issue-areas/built-icon'
+            return site + '/issue-areas/built-icon'
         else:
             return ''
 
@@ -103,6 +120,9 @@ class ToolView(grok.View):
         else:
             return ids[idx-1]
 
+    def all(self):
+        return self.context.aq_parent.absolute_url()
+
     def next(self):
         ids = [b['id'] for b in self.context.aq_parent.getFolderContents()]
         idx = ids.index(self.context.getId())    
@@ -111,6 +131,12 @@ class ToolView(grok.View):
             return ""
         else:
             return ids[idx+1]
+
+    def urating(self):
+        "Return the user's previous rating from a cookie."
+        #import pdb; pdb.set_trace()
+        ip,v = self.request.cookies.get("tool_rating", "127.0.0.1 0").split()
+        return float(v)
 
 
 class ShortView(grok.View):
@@ -127,8 +153,75 @@ class ShortView(grok.View):
             description = ' '.join(d[:100]) + '...'
 
         return description
-            
 
     def renderBubble(self):
         return self.bubbleTemplate.render(self)
 
+
+class RateItView(grok.View):
+
+    """Called by javascript to register user's rating.
+
+    Logs the IP address and rating into the votes field and updates 
+    the tools rating.
+
+    Sets cookie to based on the tools path that holds the user's rating.
+    """
+
+    grok.context(ITool)
+    grok.require('zope2.Public')
+    grok.name('rateit')
+
+    def _next_year(self):
+        """Return formated time string for one year from today."""
+
+        ny = datetime.fromordinal(datetime.now().toordinal()+365)
+        return ny.strftime("%a, %d %b %Y %H:%M:%S GMT")
+
+    def _discard_vote(self):
+        """Remove previous vote from votes if it exists."""
+
+        urating = self.request.cookies.get("tool_rating", "")
+        if urating:
+            p_address, p_value = urating.split(' ')
+            try:
+                self.context.votes.remove((p_address, float(p_value)))
+            except ValueError:
+                pass
+
+
+    def render(self):
+
+        # not sure how make this the default with current model
+        if not self.context.votes:
+            self.context.votes = []
+
+        address = self.request.get('REMOTE_ADDR')
+        value = float(self.request.get('value'))
+
+        # rating selected
+        if value > 0.0:
+            self._discard_vote()
+            self.context.votes.append((address, value))
+
+            self.request.response.setCookie("tool_rating",
+                address + ' ' + str(value),
+                path='/'.join(self.context.getPhysicalPath()),
+                expires=self._next_year())
+
+        # rating canceled
+        else:
+            self._discard_vote()
+            self.request.response.expireCookie("tool_rating",
+                path='/'.join(self.context.getPhysicalPath()))
+
+        # re-calculate current rating based on collected votes
+        if len(self.context.votes):
+            total = sum([t[1] for t in self.context.votes])
+            self.context.rating = total / len(self.context.votes)
+        else:
+            self.context.rating = 0.0
+
+        self.request.response.setHeader("Content-type", "application/json")
+        return json.dumps(dict(rating=self.context.rating, 
+            votes=len(self.context.votes)))

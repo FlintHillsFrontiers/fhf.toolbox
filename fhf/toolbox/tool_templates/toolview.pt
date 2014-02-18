@@ -10,11 +10,39 @@
     <link rel="stylesheet" type="text/css" media="screen"
           href="/++resource++fhf.toolbox/toolview.css"/>
     <link rel="stylesheet" type="text/css" media="screen"
-          href="/++resource++fhf.toolbox/jquery.rating.css"/>
+          href="/++resource++fhf.toolbox/rateit.css"/>
   </metal:slot>
 
   <metal:slot metal:fill-slot="javascript_head_slot">
-    <script src="/++resource++fhf.toolbox/jquery.rating.pack.js"></script>
+    <script src="/++resource++fhf.toolbox/jquery.rateit.min.js"></script>
+
+    <script type="text/javascript">
+      jq(document).ready(function() {
+        console.log('binding to rating');
+        jq('#user-rating').bind('rated reset', function(e) {
+          var ri=jq(this);
+  
+          var value = ri.rateit('value');
+          var toolid = ri.data('toolid');
+
+          console.info('calling rateit for '+toolid);
+  
+          jq.ajax({
+            url: toolid+'/@@rateit',
+            data: { id: toolid, value: value },
+            type: 'POST',
+            success: function(data) {
+              console.info('rateit success');
+              console.info(data);
+              jq('#overall-rating').rateit('value', data['rating']);
+            },
+            error: function(jxhr, msg, err) {
+              console.error('rateit failed');
+            }
+          });
+        });
+      });
+    </script>
   </metal:slot>
 </head>
 
@@ -28,9 +56,11 @@
     <div id="tool-navigation">
       <a class="prev" tal:condition="view/prev" 
                       tal:attributes="href view/prev" >prev</a>
-      <a class="all" tal:attributes="href python:context.aq_inner.aq_parent.absolute_url()" >up (all tools)</a>
+      <span class="prev" tal:condition="not:view/prev">&nbsp;</span>
+      <a class="all" tal:attributes="href view/all" >up (all tools)</a>
       <a class="next" tal:condition="view/next"
                       tal:attributes="href view/next" >next</a>
+      <span class="next" tal:condition="not:view/next">&nbsp;</span>
     </div>
 
     <div id="tool-header">
@@ -39,37 +69,19 @@
       </div>
 
     <div class="tool-rating">
-      <input tal:attributes="name string:group-rating;
-                             checked python:context.check_rating(1)"
-             disabled="disabled" type="radio" class="star"/>
-      <input tal:attributes="name string:group-rating;
-                             checked python:context.check_rating(2)"
-             disabled="disabled" type="radio" class="star"/>
-      <input tal:attributes="name string:group-rating;
-                             checked python:context.check_rating(3)"
-             disabled="disabled" type="radio" class="star"/>
-      <input tal:attributes="name string:group-rating;
-                             checked python:context.check_rating(4)"
-             disabled="disabled" type="radio" class="star"/>
-      <input tal:attributes="name string:group-rating;
-                             checked python:context.check_rating(5)"
-             disabled="disabled" type="radio" class="star"/>
-      <div class="votes">(<span tal:content="context/votes">0</span> votes)</div>
-      <input tal:attributes="name string:user-rating;
-                             checked python:context.user_rating(1)"
-             type="radio" class="star"/>
-      <input tal:attributes="name string:user-rating;
-                             checked python:context.user_rating(2)"
-             type="radio" class="star"/>
-      <input tal:attributes="name string:user-rating;
-                             checked python:context.user_rating(3)"
-             type="radio" class="star"/>
-      <input tal:attributes="name string:user-rating;
-                             checked python:context.user_rating(4)"
-             type="radio" class="star"/>
-      <input tal:attributes="name string:user-rating;
-                             checked python:context.user_rating(5)"
-             type="radio" class="star"/>
+        <div>Overall:
+        <span id="overall-rating" class="rateit"
+             tal:attributes="data-rateit-value context/rating"
+             data-rateit-ispreset="true" data-rateit-readonly="true"></span>
+        </div>
+        <br />
+        <div>User:
+          <span id="user-rating" class="rateit" 
+              tal:attributes="data-toolid context/id;
+                              data-rateit-value view/urating;"
+              data-rateit-ispreset="true">
+          </span>
+        </div>
     </div>
 
       <div class="wrapper">
@@ -78,11 +90,9 @@
       </div>
       <div class="wrapper">
         <div class="label">Audience</div>
-        <div id="audience" tal:content="python:','.join(context.audience)">
+        <div id="audience" tal:content="python:context.audience_all()">
       </div>
     </div>
-
-  
 
     <div class="wrapper" tal:condition="context/goals">
       <h2 class="label">Goals</h2>

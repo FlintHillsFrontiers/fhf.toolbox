@@ -27,8 +27,14 @@
     margin-right: 3%;
 }
 
-.tool-rating {
+#tool-header .tool-rating {
     float: right;
+    margin-right: 2%;
+    font-weight: bold;
+}
+
+#tool-header .rateit {
+    bottom: -2px;
 }
 
 

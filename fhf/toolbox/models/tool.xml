@@ -79,7 +79,7 @@
       <required>False</required>
       <title>Resources</title>
     </field>
-    <field name="rating" type="zope.schema.Int"> <!-- form:omitted="true"> -->
+    <field name="rating" type="zope.schema.Float"> <!-- form:omitted="true"> -->
       <description>current rating</description>
       <default>0</default>
       <required>False</required>
