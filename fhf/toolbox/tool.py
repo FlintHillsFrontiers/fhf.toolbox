@@ -190,13 +190,32 @@ class RateItView(grok.View):
                 pass
 
 
+    def _get_ip(self):
+        """ Extract the client IP address from the HTTP request
+        in a proxy-compatible way.
+
+        @return: IP address as a string or 127.0.0.1 if not available
+        """
+        if "HTTP_X_FORWARDED_FOR" in self.request.environ:
+            # Virtual host
+            ip = self.request.environ["HTTP_X_FORWARDED_FOR"]
+        elif "HTTP_HOST" in self.request.environ:
+            # Non-virtualhost
+            ip = self.request.environ["REMOTE_ADDR"]
+        else:
+            # a default IP address to write to the cookie
+            ip = '127.0.0.1'
+    
+        return ip
+
+
     def render(self):
 
         # not sure how make this the default with current model
         if not self.context.votes:
             self.context.votes = []
 
-        address = self.request.get('REMOTE_ADDR')
+        address = self._get_ip()
         value = float(self.request.get('value'))
 
         # rating selected
