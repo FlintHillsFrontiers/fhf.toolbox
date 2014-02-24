@@ -85,7 +85,7 @@
       <required>False</required>
       <title>Rating</title>
     </field>
-    <field name="votes" type="zope.schema.List"> <!-- form:omitted="true"> -->
+    <field name="votes" type="zope.schema.List" form:omitted="true">
       <description>a list of tuples with (rating, IP address)</description>
       <required>False</required>
       <title>Votes</title>
