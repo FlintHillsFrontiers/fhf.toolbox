@@ -19,13 +19,17 @@
     <script src="++resource++fhf.toolbox/jplist.min.js"></script>
     <script src="++resource++fhf.toolbox/jquery.rateit.min.js"></script>
 
-    <script type="text/javascript">jq("document").ready(function() {
-      $('#toolbox').jplist({	
-        items_box: '.list' 
-        ,item_path: '.tool-bubble'
-        ,panel_path: '.panel'
-      });
-    });
+
+    <script type="text/javascript">
+      (function($) {
+        $("document").ready(function() {
+          $('#toolbox').jplist({	
+            items_box: '.list',
+            item_path: '.tool-bubble',
+            panel_path: '.panel',
+          });
+        });
+      })(jQuery);
     </script>
   </metal:slot>
 </head>
