@@ -70,11 +70,14 @@ class Tool(Item):
         """Return the issue area icon.
 
         Ugly hard-coded mapping from issue area to icon URL.
+        
         """
-
         # workaround to include Plone site if necessary
+        # this doesn't work, there must be a better way
         if self.getPhysicalPath()[1] == 'fhf':
             site = '/fhf'
+        else:
+            site = ''
 
         if self.issue_area == 'Natural Systems':
             return site + '/issue-areas/natural-icon'
