@@ -17,31 +17,32 @@
     <script src="++resource++fhf.toolbox/jquery.rateit.min.js"></script>
 
     <script type="text/javascript">
-      jq(document).ready(function() {
-        console.log('binding to rating');
-        jq('#user-rating').bind('rated reset', function(e) {
-          var ri=jq(this);
-  
-          var value = ri.rateit('value');
-          var toolid = ri.data('toolid');
+      (function($) {
+        $(document).ready(function() {
 
-          console.info('calling rateit for '+toolid);
+          console.log('binding to rating');
+          $('#user-rating').bind('rated reset', function(e) {
+            var ri=$(this);
+    
+            var value = ri.rateit('value');
+            var toolid = ri.data('toolid');
   
-          jq.ajax({
-            url: toolid+'/@@rateit',
-            data: { id: toolid, value: value },
-            type: 'POST',
-            success: function(data) {
-              console.info('rateit success');
-              console.info(data);
-              jq('#overall-rating').rateit('value', data['rating']);
-            },
-            error: function(jxhr, msg, err) {
-              console.error('rateit failed');
-            }
+            $.ajax({
+              url: toolid+'/@@rateit',
+              data: { id: toolid, value: value },
+              type: 'POST',
+              success: function(data) {
+                console.info('rateit success');
+                console.info(data);
+                $('#overall-rating').rateit('value', data['rating']);
+              },
+              error: function(jxhr, msg, err) {
+                console.error('rateit failed');
+              }
+            });
           });
         });
-      });
+      })(jQuery);
     </script>
   </metal:slot>
 </head>
@@ -53,6 +54,7 @@
 
 <metal:main fill-slot="content-core">
   <metal:content-core define-macro="content-core">
+
     <div id="tool-navigation">
       <a class="prev" tal:condition="view/prev" 
                       tal:attributes="href view/prev" >prev</a>
@@ -68,11 +70,11 @@
         <img tal:attributes="src string:${context/get_icon}/image_preview" />
       </div>
 
-    <div class="tool-rating">
+      <div class="tool-rating">
         <div>Overall:
-        <span id="overall-rating" class="rateit"
-             tal:attributes="data-rateit-value context/rating"
-             data-rateit-ispreset="true" data-rateit-readonly="true"></span>
+          <span id="overall-rating" class="rateit"
+               tal:attributes="data-rateit-value context/rating"
+               data-rateit-ispreset="true" data-rateit-readonly="true"></span>
         </div>
         <br />
         <div>User:
@@ -82,7 +84,7 @@
               data-rateit-ispreset="true">
           </span>
         </div>
-    </div>
+      </div>
 
       <div class="wrapper">
         <div class="label">Issue Area</div>
@@ -101,19 +103,19 @@
 
     <div class="wrapper">
       <h2 class="label">Description</h2>
-      <div id="description" tal:content="context/overview/output">
+      <div id="description" tal:content="structure context/overview/output">
         Description
       </div>
     </div>
 
     <div class="wrapper" tal:condition="context/background">
       <h2 class="label">Background</h2>
-      <div id="background" tal:content="structure context/background">
+      <div id="background" tal:content="structure context/background/output">
         Background
       </div>
     </div>
 
-    <div class="wrapper" tal:condition="context/case_study/output">
+    <div class="wrapper" tal:condition="context/case_study">
       <h2 class="label">Case Studies</h2>
       <div id="background" tal:content="structure context/case_study/output">
         Case Study
@@ -121,7 +123,7 @@
     </div>
 
     <!-- step_1 controls display of entire implmentation section -->
-    <div class="wrapper" tal:condition="context/step_1/output">
+    <div class="wrapper" tal:condition="context/step_1">
       <h2 class="divider">Implementation Details</h2>
       <p>A brief outline of the first few steps necessary for implementation
          are provided.  The steps outlined here are provided
@@ -134,13 +136,13 @@
           Step
         </div>
       </div>
-      <div class="wrapper" tal:condition="context/step_2/output">
+      <div class="wrapper" tal:condition="context/step_2">
         <h2 class="label">Step 2</h2>
         <div id="step_2" tal:content="structure context/step_2/output">
           Step
         </div>
       </div>
-      <div class="wrapper" tal:condition="context/step_3/output">
+      <div class="wrapper" tal:condition="context/step_3">
         <h2 class="label">Step 3</h2>
         <div id="step_3" tal:content="structure context/step_3/output">
           Step
