@@ -1,0 +1,44 @@
+div.drawer-bubble {
+    background-color: lightgrey;
+    border-radius: 6px;
+    padding: 1.0em;
+    margin-top: 1.0em;
+}
+
+div.drawer-bubble .issue-area-icon {
+    float: left;
+    margin-right: 1.0em;
+}
+
+.drawer-bubble .issue-area {
+}
+
+
+.drawer-bubble .title {
+    font-size:	large;
+}
+
+.drawer-bubble .description {
+    clear: both;
+    padding-top: .5em;
+}
+
+div.tool-list {
+    background-color: lightgrey;
+}
+
+div.tool-list div.header {
+    margin-top: 20px;
+}
+
+div.tool-list div.toolid {
+    float: left;
+    font-size: large;
+}
+
+div.tool-list div.title {
+   
+}
+
+div.tool-list div.ui-accordion-content {
+}

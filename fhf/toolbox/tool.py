@@ -46,6 +46,16 @@ class ITool(form.Schema, IImageScaleTraversable):
 class Tool(Item):
     grok.implements(ITool)
 
+    icons = {
+        'Natural Systems': '++resource++fhf.toolbox/natural.png',
+        'Social Systems': '++resource++fhf.toolbox/social.png',
+        'Cultural Systems': '++resource++fhf.toolbox/cultural.png',
+        'Farming and Ranching': '++resource++fhf.toolbox/farm.png',
+        'Mobility and Transportation': '++resource++fhf.toolbox/mobility.png',
+        'Economic Opportunity': '++resource++fhf.toolbox/opportunity.png',
+        'Built Environment': '++resource++fhf.toolbox/built.png',
+        }
+
     def vcount(self):
         """Return the number of votes."""
 
@@ -69,32 +79,11 @@ class Tool(Item):
     def get_icon(self):
         """Return the issue area icon.
 
-        Ugly hard-coded mapping from issue area to icon URL.
-        
+        Returns the IA icon from the resource directory based on the
+        IA title.
         """
-        # workaround to include Plone site if necessary
-        # this doesn't work, there must be a better way
-        if self.getPhysicalPath()[1] == 'fhf':
-            site = '/fhf'
-        else:
-            site = ''
 
-        if self.issue_area == 'Natural Systems':
-            return site + '/issue-areas/natural-icon'
-        elif self.issue_area == 'Social Systems':
-            return site + '/issue-areas/social-icon'
-        elif self.issue_area == 'Cultural Systems':
-            return site + '/issue-areas/cultural-icon'
-        elif self.issue_area == 'Farming and Ranching':
-            return site + '/issue-areas/farm-icon'
-        elif self.issue_area == 'Mobility and Transportation':
-            return site + '/issue-areas/mobility-icon'
-        elif self.issue_area == 'Economic Opportunity':
-            return site + '/issue-areas/opportunity-icon'
-        elif self.issue_area == 'Built Environment':
-            return site + '/issue-areas/built-icon'
-        else:
-            return ''
+        return self.icons.get(self.issue_area, '')
 
 
 

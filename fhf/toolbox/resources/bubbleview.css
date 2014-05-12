@@ -23,6 +23,10 @@
     margin-top: 12px;
 }
 
+.toolid {
+    margin-right: 1%;
+}
+
 .filter-label {
     font-weight: bold;
     font-size: 1.2em;
@@ -56,6 +60,15 @@
     margin:10px 0;
     padding:15px;
     font-size:12px;
+}
+
+.tool-list .votes {
+    float: right;
+    margin-left: 1%;
+}
+
+.tool-list .rateit {
+    float: right;
 }
 
 .tool-bubble .rateit {
@@ -159,4 +172,10 @@
 
 .tool-rating {
     float:right;
+}
+
+.more {
+    float:right;
+    margin-top: 1.0em;
+    margin-right: 5%;
 }

@@ -21,6 +21,7 @@ from z3c.relationfield.schema import RelationList, RelationChoice
 from plone.formwidget.contenttree import ObjPathSourceBinder
 
 from fhf.toolbox.tool import ITool
+from fhf.toolbox.drawer import IDrawer
 
 from fhf.toolbox import MessageFactory as _
 
@@ -51,34 +52,25 @@ class Toolbox(Container):
     # Add your class methods and properties here
 
 
-# View class
-# The view will automatically use a similarly named template in
-# toolbox_templates.
-# Template filenames should be all lower case.
-# The view will render when you request a content object with this
-# interface with "/@@sampleview" appended.
-# You may make this the default view for content objects
-# of this type by uncommenting the grok.name line below or by
-# changing the view class name and template filename to View / view.pt.
-class SampleView(grok.View):
-    """ view tools in filter-able summary bubbles """
+class DrawerView(grok.View):
+    """ view drawers in filter-able summary"""
 
     grok.context(IToolbox)
     grok.require('zope2.View')
 
-    def tools(self):
+    def drawers(self):
         """Return a catalog search result of tools to show
         """
 
         context = aq_inner(self.context)
         catalog = getToolByName(context, 'portal_catalog')
     
-        return catalog(object_provides=ITool.__identifier__,
-                       path='/'.join(context.getPhysicalPath()),
-                       sort_on='sortable_title')
-    
+        return context.listFolderContents(contentFilter={
+                       "object_provides" : IDrawer.__identifier__,
+                       })
 
-class BubbleView(grok.View):
+
+class ToolView(grok.View):
     """ view tools in filter-able summary bubbles """
 
     grok.context(IToolbox)
@@ -94,7 +86,7 @@ class BubbleView(grok.View):
         return context.listFolderContents(contentFilter={
                        "object_provides" : ITool.__identifier__,
                        })
-    
+
 
 class LoadView(grok.View):
     """ loads tools the FHF google spreadsheet """
@@ -102,38 +94,79 @@ class LoadView(grok.View):
     grok.context(IToolbox)
     grok.require('zope2.View')
 
-    def load_wks(self, wks, issue_area):
-        for rec in wks.get_all_values()[2:]:
+    def expand_audience(self, f):
+        if f == '' or f == 'All':
+            return [u'Citizen Leader', u'Local Government',
+                    u'State Government', u'Federal and Tribal Gov',
+                    u'Community Organization',
+                    u'Planning and Development Org',
+                    u'Educational Organization',
+                    u'Property Owner',
+                    ]
+        else:
+            return [unicode(s.strip()) for s in f.split(',')]
 
-            # skip empty description lines
-            if rec[3] == '':
+    def init_richtext_field(self, f, alt=None):
+        """ if the field has content return it as a RichTextValue """
+        if f:
+            return RichTextValue(unicode(f))
+        elif alt:
+            return RichTextValue(unicode(alt))
+        else:
+            return None
+
+    def load_wks(self, wks, issue_area):
+        """ load the specified worksheet.
+
+        Iterate over the worksheet by row creating necessary drawers
+        and tools.  Currently assumes the following mapping between
+        row index and values:
+            1 - toolid
+            2 - title
+            3 - audience
+            4 - overview (Description)
+            5 - step_1
+            6 - step_2
+            7 - step_3
+            8 - 
+            9 - resources
+           10 - case_study
+
+        Note: assumes the appropriate drawer is given immediately prior
+        to tools.
+        """
+
+        for row in wks.get_all_values()[2:]:
+
+            # skip rows without tool ID
+            if not row[0]:
                 continue
 
-            # cleanup audience so All and empty map to all audiences
-            if rec[2] == '' or rec[2] == 'All':
-                audience = [u'Citizen Leader', u'Local Government',
-                            u'State Government', u'Federal and Tribal Gov',
-                            u'Community Organization',
-                            u'Planning and Development Org',
-                            u'Educational Organization',
-                            u'Property Owner',
-                            ]
-            else:
-                audience = [unicode(s.strip()) for s in rec[2].split(',')]
+            # create drawer when tool ID ends with '.0'
+            if row[0].endswith('.0'):
+                drawer = createContentInContainer(self.context,
+                        'fhf.toolbox.drawer',
+                        toolid = unicode(row[0]),
+                        title = unicode(row[1]),
+                        overview = self.init_richtext_field(row[4], alt=row[1]),
+                        issue_area = unicode(issue_area),
+                        )
+                continue
 
-            createContentInContainer(self.context, 'fhf.toolbox.tool',
-                title = unicode(rec[0]),
+            # create tool when tool ID ends with '.x'
+            createContentInContainer(drawer, 'fhf.toolbox.tool',
+                toolid = unicode(row[0]),
+                title = unicode(row[1]),
                 issue_area = unicode(issue_area),
-                goals = unicode(rec[1]),
-                audience = audience,
-                overview = RichTextValue(unicode(rec[3])),
-                step_1 = RichTextValue(unicode(rec[4])),
-                step_2 = RichTextValue(unicode(rec[5])),
-                step_3 = RichTextValue(unicode(rec[6])),
-                resouces = unicode(rec[7]),
-                case_study = RichTextValue(unicode(rec[8])),
+                goals = unicode(row[2]),
+                audience = self.expand_audience(row[3]),
+                overview = self.init_richtext_field(row[4]),
+                step_1 = self.init_richtext_field(row[5]),
+                step_2 = self.init_richtext_field(row[6]),
+                step_3 = self.init_richtext_field(row[7]),
+                resources = self.init_richtext_field(row[9]),
+                case_study = self.init_richtext_field(row[10]),
                 )
-
 
     def load(self):
         """ Reloads all the tools from the Google Spreadsheet
@@ -142,7 +175,7 @@ class LoadView(grok.View):
         #import pdb; pdb.set_trace()
 
         gc = gspread.login('jeff.terstriep@gmail.com','qfasbwmegcadaujw')
-        ss = gc.open('130905.CommunityToolboxSpreadsheet')
+        ss = gc.open('140226.CommunityToolboxSpreadsheet')
 
         self.load_wks(ss.worksheet('Natural Systems'), 'Natural Systems') 
         self.load_wks(ss.worksheet('Social Systems'), 'Social Systems') 

@@ -9,5 +9,6 @@
 <object name="portal_types" meta_type="Plone Types Tool">
   <!-- -*- extra stuff goes here -*- -->
   <object name="fhf.toolbox.tool" meta_type="Dexterity FTI" />
+  <object name="fhf.toolbox.drawer" meta_type="Dexterity FTI" />
   <object name="fhf.toolbox.toolbox" meta_type="Dexterity FTI" />
 </object>

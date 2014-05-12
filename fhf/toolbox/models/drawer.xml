@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<model xmlns="http://namespaces.plone.org/supermodel/schema"
+       xmlns:form="http://namespaces.plone.org/supermodel/form"
+       xmlns:security="http://namespaces.plone.org/supermodel/security">
+  <schema>
+    <field name="toolid" type="zope.schema.TextLine">
+      <title>Tool ID</title>
+    </field>
+    <field name="title" type="zope.schema.TextLine">
+      <title>Title</title>
+    </field>
+    <field name="issue_area" type="zope.schema.Choice">
+      <description>Flint Hills Frontier's defined Issue Area </description>
+      <title>Issue Area</title>
+      <values>
+        <element>Natural Systems</element>
+        <element>Social Systems</element>
+        <element>Cultural Systems</element>
+        <element>Farm and Ranch</element>
+        <element>Economic Opportunity</element>
+        <element>Mobility and Transportation</element>
+        <element>Built Environment</element>
+      </values>
+    </field>
+    <field name="overview" type="plone.app.textfield.RichText">
+      <description>Brief overview of the tools in this collection.</description>
+      <title>Description</title>
+    </field>
+  </schema>
+</model>

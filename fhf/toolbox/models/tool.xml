@@ -3,6 +3,9 @@
        xmlns:form="http://namespaces.plone.org/supermodel/form"
        xmlns:security="http://namespaces.plone.org/supermodel/security">
   <schema>
+    <field name="toolid" type="zope.schema.TextLine">
+      <title>Tool ID</title>
+    </field>
     <field name="title" type="zope.schema.TextLine">
       <description>Tool</description>
       <title>Title</title>
@@ -56,6 +59,11 @@
       <required>False</required>
       <title>Case Studies</title>
     </field>
+    <field name="resources" type="plone.app.textfield.RichText">
+      <description>Links to other resources about the tool</description>
+      <required>False</required>
+      <title>Resources</title>
+    </field>
     <fieldset name="implementation"
               label="Implementation Strategy">
       <field name="step_1" type="plone.app.textfield.RichText">
@@ -74,11 +82,6 @@
         <title>Step 3</title>
       </field>
     </fieldset>
-    <field name="resources" type="zope.schema.Text">
-      <description>Links to other resources about the tool</description>
-      <required>False</required>
-      <title>Resources</title>
-    </field>
     <field name="rating" type="zope.schema.Float"> <!-- form:omitted="true"> -->
       <description>current rating</description>
       <default>0</default>

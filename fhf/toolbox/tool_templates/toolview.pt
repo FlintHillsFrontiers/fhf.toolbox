@@ -48,9 +48,15 @@
 </head>
 
 <body>
+
 <tal:comment tal:condition="nothing">
     The default view for the FHF Community Toolbox Tool.
 </tal:comment>
+
+<metal:main fill-slot="content-title">
+  <metal:main define-macro="content-title">
+  </metal:main>
+</metal:main>
 
 <metal:main fill-slot="content-core">
   <metal:content-core define-macro="content-core">
@@ -66,33 +72,35 @@
     </div>
 
     <div id="tool-header">
-      <div class="issue-area-icon">
-        <img tal:attributes="src string:${context/get_icon}/image_preview" />
-      </div>
-
       <div class="tool-rating">
-        <div>Overall:
+        <div class="tool-rating-overall"><p>Overall:
           <span id="overall-rating" class="rateit"
                tal:attributes="data-rateit-value context/rating"
                data-rateit-ispreset="true" data-rateit-readonly="true"></span>
+          </p>
         </div>
-        <br />
-        <div>User:
+        <div class="tool-rating-user"><p>User:
           <span id="user-rating" class="rateit" 
               tal:attributes="data-toolid context/id;
                               data-rateit-value view/urating;"
               data-rateit-ispreset="true">
           </span>
+          </p>
+          <p class="voting-instructions">(click star to vote)</p>
         </div>
       </div>
 
-      <div class="wrapper">
-        <div class="label">Issue Area</div>
-        <div id="issue_area" tal:content="context/issue_area">Issue Area</div>
+      <div class="issue-area-icon">
+        <img 
+          tal:define="navroot context/@@plone_portal_state/navigation_root_url"
+          tal:attributes="src string:${navroot}/${context/get_icon}"
+        />
       </div>
-      <div class="wrapper">
-        <div class="label">Audience</div>
-        <div id="audience" tal:content="python:context.audience_all()">
+
+      <div id="issue_area" tal:content="context/issue_area">Issue Area</div>
+      <div class="id-title">
+        <h2 class="toolid" tal:content="context/toolid">ID</h2>
+        <h2 class="title" tal:content="context/title">title</h2>
       </div>
     </div>
 
@@ -130,6 +138,7 @@
          only as a suggested starting point and other approaches are certainly
          valid.
       </p>
+      <div class="implementation-steps">
       <div class="wrapper"> 
         <h2 class="label">Step 1</h2>
         <div id="step_1" tal:content="structure context/step_1/output">
@@ -148,11 +157,12 @@
           Step
         </div>
       </div>
+      </div>
     </div>
 
     <div class="wrapper" tal:condition="context/resources">
       <h2 class="label">Resources</h2>
-      <div id="resources" tal:content="context/resources">Resources</div>
+      <div id="resources" tal:content="context/resources/output">Resources</div>
     </div>
 
   </metal:content-core>

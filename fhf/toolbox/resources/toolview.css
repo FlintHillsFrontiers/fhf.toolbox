@@ -19,26 +19,51 @@
     float: right;
 }
 
-#tool-header {
+div#tool-header {
 }
 
-#tool-header img {
+div#tool-header img {
     float: left;
-    margin-right: 3%;
+    margin-right: 2%;
+    margin-bottom: 1em;
 }
 
-#tool-header .tool-rating {
+div#tool-header .tool-rating {
     float: right;
     margin-right: 2%;
     font-weight: bold;
+    text-align: right;
 }
 
-#tool-header .rateit {
+div#tool-header .rateit {
     bottom: -2px;
 }
 
+div.id-title {
+    font-size: larger;
+}
 
-.wrapper {
+div.id-title h2.toolid {
+    float: left;
+    margin-right: .5em;
+}
+
+div.implementation-steps {
+    margin-left: 1.0em;
+}
+
+div.tool-rating p {
+    margin-bottom: .3em !important;
+}
+
+p.voting-instructions {
+    font-size: smaller;
+    font-style: italic;
+    font-weight: normal;
+}
+
+div.wrapper {
+    clear: both;
     padding-bottom: 1em;
 }
 

@@ -1,0 +1,44 @@
+<tal:comment tal:condition="nothing">
+   This is a HTML snippet used to render a summary view of a Tool for
+   use within a vertically scrolled list. 
+</tal:comment>
+
+<div class="drawer-bubble box">
+
+  <!-- Drawer Header -->
+  <div class="toolid" tal:content="context/toolid">XX1.0</div>
+  <div class="issue-area-icon">
+    <img 
+      tal:define="navroot context/@@plone_portal_state/navigation_root_url"
+      tal:attributes="src string:${navroot}/${context/get_icon}"
+    />
+  </div>
+  <div class="issue-area" tal:content="context/issue_area">Issue Area</div>
+  <div class="title" tal:content="context/title">title</div>
+  <div class="description" 
+    tal:content="structure python:view.shortDesc(context.overview.output)">
+    Description
+  </div>
+
+  <!-- Tool Listing -->
+  <div class="tool-list">
+    <tal:block tal:repeat="t view/tools">
+      <div class="header">
+        <div class="votes"> (
+          <span tal:content="t/vcount">0</span> votes)
+        </div>
+        <div class="rateit" tal:attributes="data-rateit-value t/rating"
+         data-rateit-ispreset="true" data-rateit-readonly="true">
+        </div>
+        <div class="toolid" tal:content="t/toolid">XX1.X</div>
+        <div class="title" tal:content="t/title">title</div>
+      </div>
+
+      <div>
+        <div tal:condition="t/overview"
+             tal:content="structure t/overview/output">Description</div>
+        <a class="more" tal:attributes="href t/absolute_url">Learn More</a>
+      </div>
+    </tal:block>
+  </div>
+</div>

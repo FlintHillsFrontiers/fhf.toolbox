@@ -4,36 +4,33 @@
    i18n:domain="fhf.toolbox" xmlns:i18n="http://xml.zope.org/namespaces/i18n">
 
   <!-- Basic metadata -->
-  <property name="title" i18n:translate="">Toolbox</property>
+  <property name="title" i18n:translate="">Drawer</property>
   <property name="description"
-    i18n:translate="">A folder for managing the "tools" from the Community Toolbox.</property>
+    i18n:translate="">A folder for organizing tools within the Community Toolbox.</property>
   <property name="icon_expr">string:${portal_url}/folder_icon.png</property>
-  <property name="factory">fhf.toolbox.toolbox</property>
-  <property name="global_allow">True</property>
+  <property name="factory">fhf.toolbox.drawer</property>
+  <property name="global_allow">False</property>
   <property name="filter_content_types">True</property>
   <property name="allowed_content_types">
-      <element value="fhf.toolbox.drawer"/>
       <element value="fhf.toolbox.tool"/>
   </property>
   <property name="allow_discussion">False</property>
 
   <!-- schema and class used for content items -->
-  <property name="schema">fhf.toolbox.toolbox.IToolbox</property>
-  <property name="klass">fhf.toolbox.toolbox.Toolbox</property>
+  <property name="schema">fhf.toolbox.drawer.IDrawer</property>
+  <property name="klass">fhf.toolbox.drawer.Drawer</property>
 
   <property name="behaviors">
      <element value="plone.app.content.interfaces.INameFromTitle" />
-     <element value="plone.app.dexterity.behaviors.metadata.IBasic"/>
      <element value="plone.app.dexterity.behaviors.exclfromnav.IExcludeFromNavigation"/>
    </property>
 
   <!-- View information -->
   <property name="link_target"></property>
   <property name="immediate_view">view</property>
-  <property name="default_view">drawerview</property>
+  <property name="default_view">view</property>
   <property name="view_methods">
-   <element value="drawerview"/>
-   <element value="toolview"/>
+   <element value="bubbleview"/>
    <element value="view"/>
   </property>
   <property name="default_view_fallback">False</property>
