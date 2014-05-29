@@ -44,239 +44,241 @@
   <metal:content-core define-macro="content-core">
 
       <div id="toolbox" class="box jplist">
-
-         <!-- left panel -->
-         <div id="filter-column" class="panel box left">
-
-            <div class="filter-label">Issue Area</div>
-
-            <div 
-               class="cb-text-filter left"
-               data-control-type="checkbox-text-filter"
-               data-control-action="filter"
-               data-control-name="issue-area"
-               data-path=".issue-area"
-               data-logic="or">
-               
-               <div class="cb">
-                  <input 
-                     id="natural" 
-                     value="natural" 
-                     type="checkbox" 									
-                  /> 
-                  
-                  <label for="natural">Natural Systems</label>
-               </div>
-               
-               <div class="cb">
-                  <input 
-                     id="social" 
-                     value="social" 
-                     type="checkbox"  
-                  /> 
-                  
-                  <label for="social">Social Systems</label>
-               </div>
-
-               <div class="cb">
-                  <input 
-                     id="cultural" 
-                     value="cultural" 
-                     type="checkbox"  
-                  /> 
-                  
-                  <label for="cultural">Cultural Systems</label>
-               </div>
-
-               <div class="cb">
-                  <input 
-                     id="farm" 
-                     value="farm" 
-                     type="checkbox"  
-                  /> 
-                  
-                  <label for="farm">Farming and Ranching</label>
-               </div>
-
-               <div class="cb">
-                  <input 
-                     id="opportunity" 
-                     value="opportunity" 
-                     type="checkbox"  
-                  /> 
-                  
-                  <label for="opportunity">Economic Opportunity</label>
-               </div>
-
-               <div class="cb">
-                  <input 
-                     id="mobility" 
-                     value="mobility" 
-                     type="checkbox"  
-                  /> 
-                  
-                  <label for="mobility">Mobility and Transportation</label>
-               </div>
-
-               <div class="cb">
-                  <input 
-                     id="built" 
-                     value="built" 
-                     type="checkbox"  
-                  /> 
-                  
-                  <label for="built">Built Environment</label>
-               </div>
-            </div>
-
-            <div class="filter-label">Audience</div>
-
-            <div 
-               class="cb-text-filter text-shadow left"
-               data-control-type="checkbox-text-filter"
-               data-control-action="filter"
-               data-control-name="audience"
-               data-path=".audience"
-               data-logic="or">
-               
-               <div class="cb">
-                  <input 
-                     id="leader" 
-                     value="leader" 
-                     type="checkbox" 									
-                  /> 
-                  
-                  <label for="leader">Citizen Leader</label>
-               </div>
-               
-               <div class="cb">
-                  <input 
-                     id="local" 
-                     value="local" 
-                     type="checkbox"  
-                  /> 
-                  
-                  <label for="local">Local Government</label>
-               </div>
-
-               <div class="cb">
-                  <input 
-                     id="state" 
-                     value="state" 
-                     type="checkbox"  
-                  /> 
-                  
-                  <label for="state">State Government</label>
-               </div>
-
-               <div class="cb">
-                  <input 
-                     id="federal" 
-                     value="federal" 
-                     type="checkbox"  
-                  /> 
-                  
-                  <label for="federal">Federal and Tribal Gov</label>
-               </div>
-
-               <div class="cb">
-                  <input 
-                     id="community" 
-                     value="community" 
-                     type="checkbox"  
-                  /> 
-                  
-                  <label for="community">Community Organization</label>
-               </div>
-
-               <div class="cb">
-                  <input 
-                     id="planning" 
-                     value="planning" 
-                     type="checkbox"  
-                  /> 
-                  
-                  <label for="planning">Planning and Development Org</label>
-               </div>
-
-               <div class="cb">
-                  <input 
-                     id="educational" 
-                     value="educational" 
-                     type="checkbox"  
-                  /> 
-                  
-                  <label for="educational">Educational Organization</label>
-               </div>
-               <div class="cb">
-                  <input 
-                     id="owner" 
-                     value="owner" 
-                     type="checkbox"  
-                  /> 
-                  
-                  <label for="owner">Property Owner</label>
-               </div>
-            </div>
-
-         </div>
+            <div class="container">
+            <div class="row">
       
-         <!-- top panel -->
-         <div id="listing-column">
-           <div class="panel box panel-top">						
-              <div 
-                 class="drop-down left" 
-                 data-control-type="drop-down" 
-                 data-control-name="paging" 
-                 data-control-action="paging">
-                 <ul>
-                    <li><span data-number="3"> 3 per page </span></li>
-                    <li><span data-number="5" data-default="true"> 5 per page </span></li>
-                    <li><span data-number="10"> 10 per page </span></li>
-                    <li><span data-number="all"> view all </span></li>
-                 </ul>
-              </div>
-              
-              
-              <div 
-                 class="paging-results left" 
-                 data-type="Page {current} of {pages}" 
-                 data-control-type="label" 
-                 data-control-name="paging" 
-                 data-control-action="paging">
-              </div>
-                 
-              <div 
-                 class="paging left" 
-                 data-control-type="placeholder" 
-                 data-control-name="paging" 
-                 data-control-action="paging">
-              </div>
-  
-              <div class="reset-box left">
-                 <input 
-                    type="button" 
-                    class="reset-btn" 
-                    value="Reset" 
-                    data-control-type="reset" 
-                    data-control-name="reset" 
-                    data-control-action="reset"
-                 />
-              </div>		
+               <!-- left panel -->
+               <div class="col-md-3">
+      
+                  <div class="filter-label">Issue Area</div><hr>
+      
+                  <div 
+                     data-control-type="checkbox-text-filter"
+                     data-control-action="filter"
+                     data-control-name="issue-area"
+                     data-path=".issue-area"
+                     data-logic="or">
+                     
+                     <div class="cb">
+                        <input 
+                           id="natural" 
+                           value="natural" 
+                           type="checkbox" 									
+                        /> 
+                        
+                        <label for="natural">Natural Systems</label>
+                     </div>
+                     
+                     <div class="cb">
+                        <input 
+                           id="social" 
+                           value="social" 
+                           type="checkbox"  
+                        /> 
+                        
+                        <label for="social">Social Systems</label>
+                     </div>
+      
+                     <div class="cb">
+                        <input 
+                           id="cultural" 
+                           value="cultural" 
+                           type="checkbox"  
+                        /> 
+                        
+                        <label for="cultural">Cultural Systems</label>
+                     </div>
+      
+                     <div class="cb">
+                        <input 
+                           id="farm" 
+                           value="farm" 
+                           type="checkbox"  
+                        /> 
+                        
+                        <label for="farm">Farming and Ranching</label>
+                     </div>
+      
+                     <div class="cb">
+                        <input 
+                           id="opportunity" 
+                           value="opportunity" 
+                           type="checkbox"  
+                        /> 
+                        
+                        <label for="opportunity">Economic Opportunity</label>
+                     </div>
+      
+                     <div class="cb">
+                        <input 
+                           id="mobility" 
+                           value="mobility" 
+                           type="checkbox"  
+                        /> 
+                        
+                        <label for="mobility">Mobility and Transportation</label>
+                     </div>
+      
+                     <div class="cb">
+                        <input 
+                           id="built" 
+                           value="built" 
+                           type="checkbox"  
+                        /> 
+                        
+                        <label for="built">Built Environment</label>
+                     </div>
+                  </div>
+      
+                  <div class="filter-label">Audience</div><hr>
+      
+                  <div 
+                     data-control-type="checkbox-text-filter"
+                     data-control-action="filter"
+                     data-control-name="audience"
+                     data-path=".audience"
+                     data-logic="or">
+                     
+                     <div class="cb">
+                        <input 
+                           id="leader" 
+                           value="leader" 
+                           type="checkbox" 									
+                        /> 
+                        
+                        <label for="leader">Citizen Leader</label>
+                     </div>
+                     
+                     <div class="cb">
+                        <input 
+                           id="local" 
+                           value="local" 
+                           type="checkbox"  
+                        /> 
+                        
+                        <label for="local">Local Government</label>
+                     </div>
+      
+                     <div class="cb">
+                        <input 
+                           id="state" 
+                           value="state" 
+                           type="checkbox"  
+                        /> 
+                        
+                        <label for="state">State Government</label>
+                     </div>
+      
+                     <div class="cb">
+                        <input 
+                           id="federal" 
+                           value="federal" 
+                           type="checkbox"  
+                        /> 
+                        
+                        <label for="federal">Federal and Tribal Gov</label>
+                     </div>
+      
+                     <div class="cb">
+                        <input 
+                           id="community" 
+                           value="community" 
+                           type="checkbox"  
+                        /> 
+                        
+                        <label for="community">Community Organization</label>
+                     </div>
+      
+                     <div class="cb">
+                        <input 
+                           id="planning" 
+                           value="planning" 
+                           type="checkbox"  
+                        /> 
+                        
+                        <label for="planning">Planning and Development Org</label>
+                     </div>
+      
+                     <div class="cb">
+                        <input 
+                           id="educational" 
+                           value="educational" 
+                           type="checkbox"  
+                        /> 
+                        
+                        <label for="educational">Educational Organization</label>
+                     </div>
+                     <div class="cb">
+                        <input 
+                           id="owner" 
+                           value="owner" 
+                           type="checkbox"  
+                        /> 
+                        
+                        <label for="owner">Property Owner</label>
+                     </div>
+                  </div>
+      
+               </div>
+            
+               <!-- top panel -->
+               <div class="col-md-9">
+                 <div class="panel box panel-top">						
+                    <div 
+                       class="drop-down left" 
+                       data-control-type="drop-down" 
+                       data-control-name="paging" 
+                       data-control-action="paging">
+                       <ul>
+                          <li><span data-number="3"> 3 per page </span></li>
+                          <li><span data-number="5" data-default="true"> 5 per page </span></li>
+                          <li><span data-number="10"> 10 per page </span></li>
+                          <li><span data-number="all"> view all </span></li>
+                       </ul>
+                    </div>
+                    
+                    
+                    <div 
+                       class="paging-results left" 
+                       data-type="Page {current} of {pages}" 
+                       data-control-type="label" 
+                       data-control-name="paging" 
+                       data-control-action="paging">
+                    </div>
+                       
+                    <div 
+                       class="paging left" 
+                       data-control-type="placeholder" 
+                       data-control-name="paging" 
+                       data-control-action="paging">
+                    </div>
         
-           </div>
-           
-           <!-- data -->   
-           <div class="list box text-shadow">
-              <tal:block repeat="t view/tools">
-                <div tal:replace="structure t/@@shortview/renderBubble"/>
-              </tal:block>
-           </div>
-           
-           <div class="box jplist-no-results text-shadow align-center">
-              <p>No results found</p>
-           </div>
-         </div> 
+                    <div class="reset-box left">
+                       <input 
+                          type="button" 
+                          class="reset-btn" 
+                          value="Reset" 
+                          data-control-type="reset" 
+                          data-control-name="reset" 
+                          data-control-action="reset"
+                       />
+                    </div>		
+              
+                 </div>
+                 
+                 <!-- data -->   
+                 <div class="list box text-shadow">
+                    <tal:block repeat="t view/tools">
+                      <div tal:replace="structure t/@@shortview/renderBubble"/>
+                    </tal:block>
+                 </div>
+                 
+                 <div class="box jplist-no-results text-shadow align-center">
+                    <p>No results found</p>
+                 </div>
+               </div> 
+            </div>
+            </div>
       </div>
 
   </metal:content-core>
