@@ -9,7 +9,7 @@ from zope.schema.interfaces import IContextSourceBinder
 from zope.schema.vocabulary import SimpleVocabulary, SimpleTerm
 from zope.pagetemplate.pagetemplatefile import PageTemplateFile
 
-from plone.dexterity.content import Item
+from plone.dexterity.content import Container
 from plone.directives import dexterity, form
 from plone.app.textfield import RichText
 from plone.namedfile.field import NamedImage, NamedFile
@@ -43,7 +43,7 @@ class ITool(form.Schema, IImageScaleTraversable):
 # methods and properties. Put methods that are mainly useful for rendering
 # in separate view classes.
 
-class Tool(Item):
+class Tool(Container):
     grok.implements(ITool)
 
     icons = {
