@@ -53,13 +53,19 @@
     The default view for the FHF Community Toolbox Tool.
 </tal:comment>
 
-<metal:main fill-slot="content-title">
-  <metal:main define-macro="content-title">
-  </metal:main>
-</metal:main>
+<!-- remove system supplied title and description -->
+<metal:slot fill-slot="content-title">
+  <metal:slot define-macro="content-title">
+  </metal:slot>
+</metal:slot>
 
-<metal:main fill-slot="content-core">
-  <metal:content-core define-macro="content-core">
+<metal:slot fill-slot="content-description">
+  <metal:slot define-macro="content-description">
+  </metal:slot>
+</metal:slot>
+
+<metal:slot fill-slot="content-core">
+  <metal:slot define-macro="content-core">
 
     <div id="tool-navigation">
       <a class="prev" tal:condition="view/prev" 
@@ -90,83 +96,126 @@
         </div>
       </div>
 
-      <div class="issue-area-icon">
-        <img 
-          tal:define="navroot context/@@plone_portal_state/navigation_root_url"
-          tal:attributes="src string:${navroot}/${context/get_icon}"
-        />
-      </div>
-
-      <div id="issue_area" tal:content="context/issue_area">Issue Area</div>
-      <div class="id-title">
-        <h2 class="toolid" tal:content="context/toolid">ID</h2>
-        <h2 class="title" tal:content="context/title">title</h2>
-      </div>
-    </div>
-
-    <div class="wrapper" tal:condition="context/goals">
-      <h2 class="label">Goals</h2>
-      <div id="goals" tal:content="context/goals">Goals</div>
-    </div>
-
-    <div class="wrapper">
-      <h2 class="label">Description</h2>
-      <div id="description" tal:content="structure context/overview/output">
-        Description
-      </div>
-    </div>
-
-    <div class="wrapper" tal:condition="context/background">
-      <h2 class="label">Background</h2>
-      <div id="background" tal:content="structure context/background/output">
-        Background
-      </div>
-    </div>
-
-    <div class="wrapper" tal:condition="context/case_study">
-      <h2 class="label">Case Studies</h2>
-      <div id="background" tal:content="structure context/case_study/output">
-        Case Study
-      </div>
-    </div>
-
-    <!-- step_1 controls display of entire implmentation section -->
-    <div class="wrapper" tal:condition="context/step_1">
-      <h2 class="divider">Implementation Details</h2>
-      <p>A brief outline of the first few steps necessary for implementation
-         are provided.  The steps outlined here are provided
-         only as a suggested starting point and other approaches are certainly
-         valid.
-      </p>
-      <div class="implementation-steps">
-      <div class="wrapper"> 
-        <h2 class="label">Step 1</h2>
-        <div id="step_1" tal:content="structure context/step_1/output">
-          Step
+      <div id="tool-content">
+        <div class="issue-area-icon">
+          <img 
+            tal:define="navroot context/@@plone_portal_state/navigation_root_url"
+            tal:attributes="src string:${navroot}/${context/get_icon}"
+          />
+        </div>
+  
+        <div id="issue_area" tal:content="context/issue_area">Issue Area</div>
+        <div class="id-title">
+          <h2 class="toolid" tal:content="context/toolid">ID</h2>
+          <h2 class="title" tal:content="context/title">title</h2>
         </div>
       </div>
-      <div class="wrapper" tal:condition="context/step_2">
-        <h2 class="label">Step 2</h2>
-        <div id="step_2" tal:content="structure context/step_2/output">
-          Step
+  
+      <div class="wrapper" tal:condition="context/goals">
+        <h2 class="label">Goals</h2>
+        <ol>
+          <li class="goal" tal:repeat="g context/goals" tal:content="g">Goals</li>
+        </ol>
+    
+      </div>
+  
+      <div class="wrapper">
+        <h2 class="label">Description</h2>
+        <div tal:content="structure context/description/output">
+          Description
         </div>
       </div>
-      <div class="wrapper" tal:condition="context/step_3">
-        <h2 class="label">Step 3</h2>
-        <div id="step_3" tal:content="structure context/step_3/output">
-          Step
+  
+      <div class="wrapper" tal:condition="context/background">
+        <h2 class="label">Background</h2>
+        <div id="background" tal:content="structure context/background/output">
+          Background
         </div>
       </div>
+  
+      <div class="wrapper" tal:condition="context/info">
+        <h2 class="label">Additional Information</h2>
+        <div id="info" tal:content="structure context/info/output">
+          Info
+        </div>
       </div>
-    </div>
+    </div> <!-- end of tool-content -->
+  
+    <div id="implementation">
+      <h2 class="divider">Implementation Strategy</h2>
+  
+      <div class="wrapper" tal:condition="context/partners">
+        <h2 class="label">Champions and Partners</h2>
+        <div id="partners" tal:content="structure context/partners/output">
+          Partners
+        </div>
+      </div>
+  
+      <div class="wrapper">
+        <h2 class="label">Timeframe</h2>
+        <div id="timeframe" tal:content="context/timeframe">
+          Timeframe
+        </div>
+      </div>
+  
+      <div class="wrapper">
+        <h2 class="label">Price</h2>
+        <div id="price" tal:content="context/price">
+          Price
+        </div>
+      </div>
+  
+      <div class="wrapper" tal:condition="context/cost">
+        <h2 class="label">Cost Explaination</h2>
+        <div id="cost" tal:content="structure context/cost/output">
+          Cost
+        </div>
+      </div>
 
-    <div class="wrapper" tal:condition="context/resources">
-      <h2 class="label">Resources</h2>
-      <div id="resources" tal:content="context/resources/output">Resources</div>
-    </div>
+      <div class="wrapper" tal:condition="context/funding">
+        <h2 class="label">Funding Sources</h2>
+        <div id="funding" tal:content="structure context/funding/output">
+          Funding
+        </div>
+      </div>
+  
+      <div class="wrapper" tal:condition="context/steps">
+        <h2 class="divider">Implementation Details</h2>
+        <p>A brief outline of the first few steps necessary for implementation
+           are provided.  The steps outlined here are provided
+           only as a suggested starting point and other approaches are certainly
+           valid.
+        </p>
+        <div class="wrapper"> 
+          <div id="steps" tal:content="structure context/steps/output">
+            Step
+          </div>
+        </div>
+      </div>
+    </div> <!-- end of implementation -->
 
-  </metal:content-core>
-</metal:main>
+    <div id="case_study">
+      <div class="wrapper" tal:condition="context/cs_description">
+        <h2 class="divider">Case Study</h2>
+  
+        <h2 class="label" tal:content="context/cs_title">Title</h2>
+        <div class="description" 
+             tal:content="structure context/cs_description/output">
+          Description
+        </div>
+  
+        <div class="wrapper" tal:condition="context/cs_relavance">
+          <h2 class="label">Relavance</h2>
+          <div id="cs_relavance" 
+               tal:content="structure context/resources/output">
+            Relavance
+          </div>
+        </div>
+      </div>
+    </div> <!-- end of case study -->
+
+  </metal:slot>
+</metal:slot>
 
 </body>
 </html>

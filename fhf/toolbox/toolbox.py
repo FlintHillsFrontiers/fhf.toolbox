@@ -136,6 +136,8 @@ class LoadView(grok.View):
         to tools.
         """
 
+        #import pdb; pdb.set_trace()
+
         for row in wks.get_all_values()[2:]:
 
             # skip rows without tool ID
@@ -154,18 +156,17 @@ class LoadView(grok.View):
                 continue
 
             # create tool when tool ID ends with '.x'
+            print row
             createContentInContainer(drawer, 'fhf.toolbox.tool',
                 toolid = unicode(row[0]),
-                title = unicode(row[1]),
+                title = unicode(row[1].strip()),
                 issue_area = unicode(issue_area),
                 goals = unicode(row[2]),
                 audience = self.expand_audience(row[3]),
-                overview = self.init_richtext_field(row[4]),
-                step_1 = self.init_richtext_field(row[5]),
-                step_2 = self.init_richtext_field(row[6]),
-                step_3 = self.init_richtext_field(row[7]),
-                resources = self.init_richtext_field(row[9]),
-                case_study = self.init_richtext_field(row[10]),
+                description = self.init_richtext_field(row[4]),
+                steps = self.init_richtext_field(u'<p>' + \
+                        u'</p><p>'.join(row[5:8])+u'</p>'),
+                cs_description = self.init_richtext_field(row[10]),
                 )
 
     def load(self):

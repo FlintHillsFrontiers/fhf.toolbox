@@ -23,17 +23,47 @@
         <element>Built Environment</element>
       </values>
     </field>
-    <field name="goals" type="zope.schema.Text">
-      <description>brief description of goals or objectives</description>
+    <field name="goals" type="zope.schema.List">
+      <description>Choose the most relavant goals and prioritize</description>
       <title>Goals</title>
+      <value_type type="zope.schema.Choice">
+        <values>
+          <element>Conservation</element>
+          <element>Awareness</element>
+          <element>Water</element>
+          <element>Air Quality</element>
+          <element>Celbrate Culture</element>
+          <element>Youth</element>
+          <element>Arts</element>
+          <element>Amenities</element>
+          <element>Health</element>
+          <element>Education</element>
+          <element>Civic Engagement</element>
+          <element>Service</element>
+          <element>Stewardship</element>
+          <element>Local Food</element>
+          <element>Family Farms and Ranches</element>
+          <element>Marketing</element>
+          <element>Entrepreneurship</element>
+          <element>Jobs</element>
+          <element>Tourism</element>
+          <element>New Models</element>
+          <element>Multi-Modal Transportation</element>
+          <element>Technology/Modernization</element>
+          <element>Movement of Goods</element>
+          <element>Economic, Environmental, and Social Impacts</element>
+          <element>Downtowns</element>
+          <element>Housing</element>
+          <element>Communities</element>
+          <element>Services</element>
+        </values>
+      </value_type>
     </field>
     <field name="audience" type="zope.schema.List">
       <description>Intended audience (a tool my be listed more than once for difference audiences).</description>
       <title>Audience</title>
-      <default>All</default>
       <value_type type="zope.schema.Choice">
         <values>
-          <element>All</element>
           <element>Citizen Leaders</element>
           <element>Local Government</element>
           <element>State Government</element>
@@ -45,44 +75,83 @@
         </values>
       </value_type>
     </field>
-    <field name="overview" type="plone.app.textfield.RichText">
-      <description>Brief description of the tool.</description>
+    <field name="description" type="plone.app.textfield.RichText">
+      <description>Description of Tool</description>
       <title>Description</title>
+      <required>True</required>
     </field>
     <field name="background" type="plone.app.textfield.RichText">
-      <description>Background of tool or concept</description>
-      <required>False</required>
+      <description>What problem is the tool trying to solve</description>
       <title>Background</title>
-    </field>
-    <field name="case_study" type="plone.app.textfield.RichText">
-      <description>Examples where other groups have used the tool</description>
       <required>False</required>
-      <title>Case Studies</title>
     </field>
-    <field name="resources" type="plone.app.textfield.RichText">
-      <description>Links to other resources about the tool</description>
+    <field name="info" type="plone.app.textfield.RichText">
+      <description>Links to organizations, further readings, etc.</description>
+      <title>Additional Information</title>
       <required>False</required>
-      <title>Resources</title>
     </field>
-    <fieldset name="implementation"
-              label="Implementation Strategy">
-      <field name="step_1" type="plone.app.textfield.RichText">
-        <description />
+
+    <fieldset name="implementation" label="Implementation Strategy">
+
+      <field name="partners" type="plone.app.textfield.RichText">
+        <description>Group or individuals that might lead and/or partner</description>
+        <title>Champions and Partners</title>
         <required>False</required>
-        <title>Step 1</title>
       </field>
-      <field name="step_2" type="plone.app.textfield.RichText">
-        <description />
-        <required>False</required>
-        <title>Step 2</title>
+      <field name="timeframe" type="zope.schema.Choice">
+        <description>Potential timeframe from the tool</description>
+        <title>Timeframe</title>
+        <values>
+          <element>Short (1-3 years)</element>
+          <element>Medium (3-8 years)</element>
+          <element>Long (8+ years)</element>
+        </values>
       </field>
-      <field name="step_3" type="plone.app.textfield.RichText">
-        <description />
+      <field name="price" type="zope.schema.Choice">
+        <description>Estimated cost level</description>
+        <title>Cost</title>
+        <values>
+          <element>$</element>
+          <element>$$</element>
+          <element>$$$</element>
+          <element>$$$$</element>
+          <element>$$$$$</element>
+        </values>
+      </field>
+      <field name="cost" type="plone.app.textfield.RichText">
+        <description>Additional cost explaination
+        </description>
+        <title>Cost Explaination</title>
+      </field>
+      <field name="funding" type="plone.app.textfield.RichText">
+        <description>Potential funding sources and other resources
+        </description>
+        <title>Potential Funding</title>
+      </field>
+      <field name="steps" type="plone.app.textfield.RichText">
+        <description>Steps or procedure for implementing the tool</description>
         <required>False</required>
-        <title>Step 3</title>
+        <title>Implementation Plan</title>
       </field>
     </fieldset>
-    <field name="rating" type="zope.schema.Float"> <!-- form:omitted="true"> -->
+    <fieldset name="study" label="Case Study">
+      <field name="cs_title" type="zope.schema.TextLine">
+        <title>Title</title>
+        <description>Case study title</description>
+        <required>False</required>
+      </field>
+      <field name="cs_description" type="plone.app.textfield.RichText">
+        <title>Description</title>
+        <description>General description of the case study</description>
+        <required>False</required>
+      </field>
+      <field name="cs_relavance" type="plone.app.textfield.RichText">
+        <title>Relavance</title>
+        <description>How the case study relates to the tool</description>
+        <required>False</required>
+      </field>
+    </fieldset>
+    <field name="rating" type="zope.schema.Float" form:omitted="true">
       <description>current rating</description>
       <default>0</default>
       <required>False</required>
