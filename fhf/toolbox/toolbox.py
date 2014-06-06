@@ -163,7 +163,7 @@ class LoadView(grok.View):
                 issue_area = unicode(issue_area),
                 goals = unicode(row[2]),
                 audience = self.expand_audience(row[3]),
-                description = self.init_richtext_field(row[4]),
+                overview = self.init_richtext_field(row[4]),
                 steps = self.init_richtext_field(u'<p>' + \
                         u'</p><p>'.join(row[5:8])+u'</p>'),
                 cs_description = self.init_richtext_field(row[10]),

@@ -75,7 +75,7 @@
         </values>
       </value_type>
     </field>
-    <field name="description" type="plone.app.textfield.RichText">
+    <field name="overview" type="plone.app.textfield.RichText">
       <description>Description of Tool</description>
       <title>Description</title>
       <required>True</required>

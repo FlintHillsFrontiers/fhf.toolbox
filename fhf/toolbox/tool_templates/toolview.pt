@@ -119,9 +119,9 @@
     
       </div>
   
-      <div class="wrapper">
+      <div class="wrapper" tal:condition="context/overview">
         <h2 class="label">Description</h2>
-        <div tal:content="structure context/description/output">
+        <div tal:content="structure context/overview/output">
           Description
         </div>
       </div>
