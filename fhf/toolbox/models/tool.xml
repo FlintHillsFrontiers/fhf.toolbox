@@ -119,19 +119,21 @@
         </values>
       </field>
       <field name="cost" type="plone.app.textfield.RichText">
+        <title>Cost Explaination</title>
         <description>Additional cost explaination
         </description>
-        <title>Cost Explaination</title>
+        <required>False</required>
       </field>
       <field name="funding" type="plone.app.textfield.RichText">
+        <title>Potential Funding</title>
         <description>Potential funding sources and other resources
         </description>
-        <title>Potential Funding</title>
+        <required>False</required>
       </field>
       <field name="steps" type="plone.app.textfield.RichText">
+        <title>Implementation Plan</title>
         <description>Steps or procedure for implementing the tool</description>
         <required>False</required>
-        <title>Implementation Plan</title>
       </field>
     </fieldset>
     <fieldset name="study" label="Case Study">
