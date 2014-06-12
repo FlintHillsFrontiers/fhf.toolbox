@@ -67,4 +67,11 @@ div.wrapper {
     padding-bottom: 1em;
 }
 
+div#content-core ol, div#content-core ul {
+    list-style-position: inside;
+    display: block;
+}
 
+div#content-core li {
+    display: block;
+}

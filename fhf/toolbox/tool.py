@@ -113,7 +113,7 @@ class ToolView(grok.View):
             return ids[idx-1]
 
     def all(self):
-        return self.context.aq_parent.absolute_url()
+        return self.context.aq_parent.aq_parent.absolute_url()
 
     def next(self):
         ids = [b['id'] for b in self.context.aq_parent.getFolderContents()]

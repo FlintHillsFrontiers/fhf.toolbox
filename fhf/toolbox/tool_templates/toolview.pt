@@ -207,7 +207,7 @@
         <div class="wrapper" tal:condition="context/cs_relavance">
           <h2 class="label">Relavance</h2>
           <div id="cs_relavance" 
-               tal:content="structure context/resources/output">
+               tal:content="structure context/cs_relavance/output">
             Relavance
           </div>
         </div>
