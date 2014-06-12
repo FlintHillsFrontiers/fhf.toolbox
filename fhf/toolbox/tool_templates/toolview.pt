@@ -166,7 +166,7 @@
       </div>
   
       <div class="wrapper" tal:condition="context/cost">
-        <h2 class="label">Cost Explaination</h2>
+        <h2 class="label">Cost Explanation</h2>
         <div id="cost" tal:content="structure context/cost/output">
           Cost
         </div>
