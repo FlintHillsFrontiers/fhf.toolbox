@@ -113,6 +113,8 @@ class ToolView(grok.View):
             return ids[idx-1]
 
     def all(self):
+        # TODO hardcoded for tools in drawers in a toolbox.  This
+        # should be changed to search for toobox type
         return self.context.aq_parent.aq_parent.absolute_url()
 
     def next(self):
