@@ -66,121 +66,160 @@
 
 <metal:slot fill-slot="content-core">
   <metal:slot define-macro="content-core">
-
-    <div id="tool-navigation">
-      <a class="prev" tal:condition="view/prev" 
-                      tal:attributes="href view/prev" >prev</a>
-      <span class="prev" tal:condition="not:view/prev">&nbsp;</span>
-      <a class="all" tal:attributes="href view/all" >up (all tools)</a>
-      <a class="next" tal:condition="view/next"
-                      tal:attributes="href view/next" >next</a>
-      <span class="next" tal:condition="not:view/next">&nbsp;</span>
-    </div>
-
-    <div id="tool-header">
-      <div class="tool-rating">
-        <div class="tool-rating-overall"><p>Overall:
+      
+     <!-- Tool Header Area -->
+     <div class="jumbotron">
+      <div class="container">
+            
+             <div class="tool-rating">
+        <div class="tool-rating-overall"><h4>Overall:
           <span id="overall-rating" class="rateit"
                tal:attributes="data-rateit-value context/rating"
                data-rateit-ispreset="true" data-rateit-readonly="true"></span>
-          </p>
+          </h4>
         </div>
-        <div class="tool-rating-user"><p>User:
+        <div class="tool-rating-user"><h4>User:
           <span id="user-rating" class="rateit" 
               tal:attributes="data-toolid context/id;
                               data-rateit-value view/urating;"
               data-rateit-ispreset="true">
           </span>
-          </p>
-          <p class="voting-instructions">(click star to vote)</p>
+          </h4>
+          <h6 class="voting-instructions">(click star to vote)</h6>
         </div>
       </div>
+            
+                  
+                       <img 
+                         tal:define="navroot context/@@plone_portal_state/navigation_root_url"
+                         tal:attributes="src string:${navroot}/${context/get_icon}"
+                         style="height: 41px; width:41px;"
+                       /><h3 style="display: inline;"><span id="issue_area" tal:content="context/issue_area" style="margin-left:15px">Issue Area</span></h3>
+            
+        <div class="id-title">
+          <h3><span class="label label-default" tal:content="context/toolid">ID</span></h3>
+          <h1 class="title" tal:content="context/title">title</h1>
+        </div>
+        
+        <div>
+            <p>Call to action.  One sentence about why the user should do this.  List the organization that the user should contact to get started.</p>
+            <a href="#" class="btn btn-primary btn-lg" role="button" >Some Action &raquo;</a>
+        </div>
+      
+      </div>
+      </div>
+      
+      
+      
+    <div class="container">
+            <div id="tool-navigation">
+              <a class="prev" tal:condition="view/prev" 
+                              tal:attributes="href view/prev" >prev</a>
+              <span class="prev" tal:condition="not:view/prev">&nbsp;</span>
+              <a class="all" tal:attributes="href view/all" >up (all tools)</a>
+              <a class="next" tal:condition="view/next"
+                              tal:attributes="href view/next" >next</a>
+              <span class="next" tal:condition="not:view/next">&nbsp;</span>
+            </div>
+            <br>
+
+    
 
       <div id="tool-content">
-        <div class="issue-area-icon">
-          <img 
-            tal:define="navroot context/@@plone_portal_state/navigation_root_url"
-            tal:attributes="src string:${navroot}/${context/get_icon}"
-          />
-        </div>
+            
+            <div class="row">
+                <div class="btn-group btn-group-justified">
+                     
+                  <a class="btn btn-default" role="button" href="#tool">Tool Info</a>
+                  <a class="btn btn-default" role="button" href="#implement">Implementation</a>
+                  <a class="btn btn-default" role="button" href="#casestudy">Case Study</a>
+                </div>
+            
+            </div>            
+        <a id="tool"></a>
   
-        <div id="issue_area" tal:content="context/issue_area">Issue Area</div>
-        <div class="id-title">
-          <h2 class="toolid" tal:content="context/toolid">ID</h2>
-          <h2 class="title" tal:content="context/title">title</h2>
-        </div>
-      </div>
-  
+      <h2>Tool Information</h2>
+      <hr>
+      <h3>Goals</h3>
       <div class="wrapper" tal:condition="context/goals">
-        <h2 class="label">Goals</h2>
+        
         <ol>
           <li class="goal" tal:repeat="g context/goals" tal:content="g">Goals</li>
         </ol>
     
       </div>
   
+      
       <div class="wrapper" tal:condition="context/overview">
-        <h2 class="label">Description</h2>
+        
         <div tal:content="structure context/overview/output">
           Description
         </div>
       </div>
   
+      
       <div class="wrapper" tal:condition="context/background">
-        <h2 class="label">Background</h2>
+        <h3>Background</h3>
         <div id="background" tal:content="structure context/background/output">
           Background
         </div>
       </div>
   
+      
       <div class="wrapper" tal:condition="context/info">
-        <h2 class="label">Additional Information</h2>
+        <h3>Additional Information</h3>
         <div id="info" tal:content="structure context/info/output">
           Info
         </div>
       </div>
     </div> <!-- end of tool-content -->
-  
+  <a id="implement"></a>
     <div id="implementation">
-      <h2 class="divider">Implementation Strategy</h2>
+      <h2>Implementation Strategy</h2>
+      <hr>
   
+      
       <div class="wrapper" tal:condition="context/partners">
-        <h2 class="label">Champions and Partners</h2>
+        <h3>Champions and Partners</h3>
         <div id="partners" tal:content="structure context/partners/output">
           Partners
         </div>
       </div>
   
+      
       <div class="wrapper">
-        <h2 class="label">Timeframe</h2>
+        <h3>Timeframe</h3>
         <div id="timeframe" tal:content="context/timeframe">
           Timeframe
         </div>
       </div>
   
+      
       <div class="wrapper">
-        <h2 class="label">Price</h2>
+        <h3>Cost</h3>
         <div id="price" tal:content="context/price">
           Price
         </div>
       </div>
   
+      
       <div class="wrapper" tal:condition="context/cost">
-        <h2 class="label">Cost Explanation</h2>
+        <h3>Cost Details</h3>
         <div id="cost" tal:content="structure context/cost/output">
           Cost
         </div>
       </div>
 
       <div class="wrapper" tal:condition="context/funding">
-        <h2 class="label">Funding Sources</h2>
+        <h3>Funding Sources</h3>
         <div id="funding" tal:content="structure context/funding/output">
           Funding
         </div>
       </div>
   
       <div class="wrapper" tal:condition="context/steps">
-        <h2 class="divider">Implementation Details</h2>
+            
+        <h3>Implementation Details</h3>
         <p>A brief outline of the first few steps necessary for implementation
            are provided.  The steps outlined here are provided
            only as a suggested starting point and other approaches are certainly
@@ -196,16 +235,19 @@
 
     <div id="case_study">
       <div class="wrapper" tal:condition="context/cs_description">
-        <h2 class="divider">Case Study</h2>
+            <a id="casestudy"></a>
+        <h2 >Case Study</h2>
+        <hr>
   
-        <h2 class="label" tal:content="context/cs_title">Title</h2>
+        <h3  tal:content="context/cs_title">Title</h3>
         <div class="description" 
              tal:content="structure context/cs_description/output">
           Description
         </div>
   
+        
         <div class="wrapper" tal:condition="context/cs_relavance">
-          <h2 class="label">Relavance</h2>
+          <h3>Relavance</h3>
           <div id="cs_relavance" 
                tal:content="structure context/cs_relavance/output">
             Relavance
@@ -213,6 +255,7 @@
         </div>
       </div>
     </div> <!-- end of case study -->
+    </div>
 
   </metal:slot>
 </metal:slot>
