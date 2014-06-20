@@ -1,5 +1,4 @@
-.drop-down{float:left;width:130px;height:22px;border:1px solid #ddd;margin:5px 20px 5px 0;}
-.drop-down .panel{float:left;width:125px;height:22px;line-height:22px;overflow:hidden;background:#fff url("down.png") no-repeat 99% 50%;cursor:pointer;margin:0;padding:0 0 0 5px}
+.drop-down .panel{float:left;width:100%;height:22px;line-height:22px;overflow:hidden;background:#fff url("down.png") no-repeat 99% 50%;cursor:pointer;margin:0;padding:0 0 0 5px;box-shadow: none;}
 .drop-down ul{position:relative;top:0;left:-1px;z-index:1000;width:130px;display:none;overflow:hidden;background-color:#fff;border:1px solid #ccc;list-style:none;border-radius:0 0 3px 3px;margin:0;padding:0;}
 .drop-down ul li{cursor:pointer;width:130px;float:left;background-color:#fff;padding:0 0 0 5px}
 .drop-down ul li:hover{background-color:#ececec}
@@ -9,9 +8,8 @@
 .paging span{cursor:pointer;color:#0381bb;margin:0 10px 0 0}
 .paging .current{font-weight:700;color:#f03800}
 .filter,.pagingprev,.pagingmid,.pagingnext{float:left}
-.paging,.paging-results{float:left;margin:5px 20px 5px 0}
-.reset-box{margin:4px 20px 5px 0}
-.reset-btn{border:1px solid #ddd;background:#fff;margin:0;padding:0 10px;height:25px;font-family:'arial';color:#222;cursor:pointer}
+.paging,.paging-results{float:left;margin:15px 20px 5px 15px; padding-top: 6px;}
+.reset-box{margin:15px 15px 5px 0}
 .filter-buttons{float:left;clear:left;margin:10px 20px 0 0;}
 .filter-buttons input{vertical-align:bottom;background:#fff;border:1px solid #0c5f1f;border-radius:3px;color:#0c5f1f}
 .filter-button.selected{border:1px solid #ca3f1a;color:#ca3f1a}
