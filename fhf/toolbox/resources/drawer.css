@@ -42,3 +42,7 @@ div.tool-list div.title {
 
 div.tool-list div.ui-accordion-content {
 }
+
+div.ui-accordion-content{
+    height: 100% !important; 
+}

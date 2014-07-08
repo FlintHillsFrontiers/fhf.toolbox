@@ -36,7 +36,8 @@
 
       <div >
         <div tal:condition="t/overview"
-             tal:content="structure t/overview/output">Description    
+             tal:content="structure t/overview/output">Description
+             
         </div>
         <a class="more" tal:attributes="href t/absolute_url">Learn More</a>
        

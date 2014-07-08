@@ -51,7 +51,7 @@
 <metal:main fill-slot="content-core">
   <metal:content-core define-macro="content-core">
 
-      <div id="toolbox" class="box jplist container">
+      <div id="toolbox" class="box jplist">
 
          <div class="row">
          <!-- left panel -->
@@ -212,7 +212,7 @@
                      type="checkbox"  
                   /> 
                   
-                  <label for="planning">Planning and Development Org</label>
+                  <label for="planning">Planning and Develop. Org</label>
                </div>
 
                <div class="cb">
