@@ -21,8 +21,9 @@
   <property name="klass">fhf.toolbox.drawer.Drawer</property>
 
   <property name="behaviors">
-     <element value="plone.app.content.interfaces.INameFromTitle" />
+     <element value="plone.app.content.interfaces.INameFromTitle"/>
      <element value="plone.app.dexterity.behaviors.exclfromnav.IExcludeFromNavigation"/>
+     <element value="Image"/>
    </property>
 
   <!-- View information -->
