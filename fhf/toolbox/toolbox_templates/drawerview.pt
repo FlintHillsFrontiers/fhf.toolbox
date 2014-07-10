@@ -53,10 +53,15 @@
 
       <div id="toolbox" class="box jplist">
 
+         <div class="row">
          <!-- left panel -->
-         <div id="filter-column" class="panel box left">
-
-            <div class="filter-label">Issue Area</div>
+         <div class="col-md-3">
+         <div id="filter-column" class="panel panel-default box left">
+            
+         
+            <div class="filter-label panel-heading">Filter Results</div>
+            <h4 style="padding-right:15px; padding-left:15px;"><strong>Issue Area</strong></h4>
+            
 
             <div 
                class="cb-text-filter left"
@@ -136,8 +141,11 @@
                   <label for="built">Built Environment</label>
                </div>
             </div>
-
-            <div class="filter-label">Audience</div>
+            <div style="margin-bottom:-25px;">&nbsp;</div>
+            <hr>
+         
+           
+            <h4 style="padding-right:15px; padding-left:15px;"><strong>Audience</strong></h4>
 
             <div 
                class="cb-text-filter text-shadow left"
@@ -204,7 +212,7 @@
                      type="checkbox"  
                   /> 
                   
-                  <label for="planning">Planning and Development Org</label>
+                  <label for="planning">Planning and Develop. Org</label>
                </div>
 
                <div class="cb">
@@ -226,23 +234,29 @@
                   <label for="owner">Property Owner</label>
                </div>
             </div>
+            <div>&nbsp;</div>
+         </div>
 
          </div>
       
          <!-- top panel -->
-         <div id="listing-column">
-           <div class="panel box panel-top">						
+         <div id="listing-column" class="col-md-9" >
+            
+           <div class="panel box panel-top row" style="box-shadow:none;" >
+              <div class="col-md-3">
               <div 
-                 class="drop-down left" 
+                 class="left form-control drop-down"
+                 style="margin-top:15px;"
                  data-control-type="drop-down" 
                  data-control-name="paging" 
                  data-control-action="paging">
-                 <ul>
+                  <ul>
                     <li><span data-number="3"> 3 per page </span></li>
                     <li><span data-number="5" data-default="true"> 5 per page </span></li>
                     <li><span data-number="10"> 10 per page </span></li>
                     <li><span data-number="all"> view all </span></li>
-                 </ul>
+                  </ul>
+              </div>
               </div>
               
               
@@ -255,16 +269,18 @@
               </div>
                  
               <div 
-                 class="paging left" 
-                 data-control-type="placeholder" 
+                 class="paging left " 
+                 data-control-type="placeholder"
                  data-control-name="paging" 
                  data-control-action="paging">
               </div>
+             
   
-              <div class="reset-box left">
+              <div class="reset-box left pull-right">
                  <input 
                     type="button" 
-                    class="reset-btn" 
+                    class="reset-btn btn btn-default"
+                    style="margin-right:0px;"
                     value="Reset" 
                     data-control-type="reset" 
                     data-control-name="reset" 
@@ -284,7 +300,9 @@
            <div class="box jplist-no-results text-shadow align-center">
               <p>No results found</p>
            </div>
-         </div> 
+         
+         </div>
+         </div>
       </div>
 
   </metal:content-core>

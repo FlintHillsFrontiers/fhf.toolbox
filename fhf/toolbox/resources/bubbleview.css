@@ -18,9 +18,8 @@
 }
 
 #filter-column {
-    width: 25%;
-    float: left;
-    margin-top: 12px;
+
+    margin-top: 15px;
 }
 
 .toolid {
@@ -42,12 +41,12 @@
 }
 
 #listing-column {
-    width: 72%;
-    float: right;
+    
 }
 
 /* root element for scrollable items */
 #tool-listing {
+    
     position:absolute;
 
     /* this time we have very large space for height */
