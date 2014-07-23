@@ -69,7 +69,7 @@
       
      <!-- Tool Header Area -->
      <div class="jumbotron">
-      <div class="container">
+      
             
              <div class="tool-rating">
         <div class="tool-rating-overall"><h4>Overall:
@@ -106,7 +106,7 @@
             <a href="#" class="btn btn-primary btn-lg" role="button" >Some Action &raquo;</a>
         </div>
       
-      </div>
+      
       </div>
       
       
@@ -125,7 +125,7 @@
 
     
 
-      <div id="tool-content">
+      <div id="tool-content" >
             
             <div class="row">
                 <div class="btn-group btn-group-justified">
@@ -138,10 +138,10 @@
             </div>            
         <a id="tool"></a>
   
-      <h2>Tool Information</h2>
-      <hr>
-      <h3>Goals</h3>
-      <div class="wrapper" tal:condition="context/goals">
+      <h2 class="row">Tool Information</h2>
+      <hr class="row">
+      <h3 class="row">Goals</h3>
+      <div class="wrapper row" tal:condition="context/goals">
         
         <ol>
           <li class="goal" tal:repeat="g context/goals" tal:content="g">Goals</li>
@@ -150,15 +150,15 @@
       </div>
   
       
-      <div class="wrapper" tal:condition="context/overview">
-        
+      <div class="wrapper row" tal:condition="context/overview">
+      <h3>Description</h3>  
         <div tal:content="structure context/overview/output">
           Description
         </div>
       </div>
   
       
-      <div class="wrapper" tal:condition="context/background">
+      <div class="wrapper row" tal:condition="context/background">
         <h3>Background</h3>
         <div id="background" tal:content="structure context/background/output">
           Background
@@ -166,7 +166,7 @@
       </div>
   
       
-      <div class="wrapper" tal:condition="context/info">
+      <div class="wrapper row" tal:condition="context/info">
         <h3>Additional Information</h3>
         <div id="info" tal:content="structure context/info/output">
           Info
@@ -175,11 +175,11 @@
     </div> <!-- end of tool-content -->
   <a id="implement"></a>
     <div id="implementation">
-      <h2>Implementation Strategy</h2>
-      <hr>
+      <h2 class="row">Implementation Strategy</h2>
+      <hr class="row">
   
       
-      <div class="wrapper" tal:condition="context/partners">
+      <div class="wrapper row" tal:condition="context/partners">
         <h3>Champions and Partners</h3>
         <div id="partners" tal:content="structure context/partners/output">
           Partners
@@ -187,7 +187,7 @@
       </div>
   
       
-      <div class="wrapper">
+      <div class="wrapper row">
         <h3>Timeframe</h3>
         <div id="timeframe" tal:content="context/timeframe">
           Timeframe
@@ -195,7 +195,7 @@
       </div>
   
       
-      <div class="wrapper">
+      <div class="wrapper row">
         <h3>Cost</h3>
         <div id="price" tal:content="context/price">
           Price
@@ -203,21 +203,21 @@
       </div>
   
       
-      <div class="wrapper" tal:condition="context/cost">
+      <div class="wrapper row" tal:condition="context/cost">
         <h3>Cost Details</h3>
         <div id="cost" tal:content="structure context/cost/output">
           Cost
         </div>
       </div>
 
-      <div class="wrapper" tal:condition="context/funding">
+      <div class="wrapper row" tal:condition="context/funding">
         <h3>Funding Sources</h3>
         <div id="funding" tal:content="structure context/funding/output">
           Funding
         </div>
       </div>
   
-      <div class="wrapper" tal:condition="context/steps">
+      <div class="wrapper row" tal:condition="context/steps">
             
         <h3>Implementation Details</h3>
         <p>A brief outline of the first few steps necessary for implementation
@@ -236,21 +236,21 @@
     <div id="case_study">
       <div class="wrapper" tal:condition="context/cs_description">
             <a id="casestudy"></a>
-        <h2 >Case Study</h2>
-        <hr>
+        <h2 class="row">Case Study</h2>
+        <hr class="row">
   
-        <h3  tal:content="context/cs_title">Title</h3>
-        <div class="description" 
+        <h3 class="row" tal:content="context/cs_title">Title</h3>
+        <div class="description row" 
              tal:content="structure context/cs_description/output">
           Description
         </div>
   
         
-        <div class="wrapper" tal:condition="context/cs_relavance">
-          <h3>Relevance</h3>
+        <div class="wrapper row" tal:condition="context/cs_relavance">
+          <h3>Relavance</h3>
           <div id="cs_relavance" 
                tal:content="structure context/cs_relavance/output">
-            Relevance
+            Relavance
           </div>
         </div>
       </div>
