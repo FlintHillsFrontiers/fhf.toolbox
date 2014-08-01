@@ -11,4 +11,5 @@
   <object name="fhf.toolbox.tool" meta_type="Dexterity FTI" />
   <object name="fhf.toolbox.drawer" meta_type="Dexterity FTI" />
   <object name="fhf.toolbox.toolbox" meta_type="Dexterity FTI" />
+  <object name="fhf.toolbox.study" meta_type="Dexterity FTI" />
 </object>
