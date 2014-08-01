@@ -75,6 +75,25 @@
         </values>
       </value_type>
     </field>
+    <field name="call_to_action" type="zope.schema.TextLine">
+      <title>Action Button Description</title>
+      <description>
+        One sentence about what will happen when button is pressed.
+      </description>
+      <default>Call to action.  Description here.</default>
+    </field>
+    <field name="action_label" type="zope.schema.TextLine">
+      <title>Button Label</title>
+      <description>Text displayed in action button (keep it short).
+      </description>
+      <default>Get Started</default>
+    </field>
+    <field name="action_link" type="zope.schema.TextLine">
+      <title>Button Link</title>
+      <description>Destination URL when the button is pressed.
+      </description>
+      <default>#</default>
+    </field>
     <field name="overview" type="plone.app.textfield.RichText">
       <description>Description of Tool</description>
       <title>Description</title>
