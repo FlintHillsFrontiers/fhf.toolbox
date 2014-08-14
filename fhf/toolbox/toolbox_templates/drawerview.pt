@@ -235,6 +235,19 @@
                </div>
             </div>
             <div>&nbsp;</div>
+
+            <div tal:condition="view/isContributor">
+              <hr />
+              <h4 class="filter-label panel-heading">
+                <strong>Contributors' Tools</strong>
+              </h4>
+              <a href="#" tal:attributes="href string:@@toolview">
+                <div style="padding-right:15px; padding-left:15px;">
+                  View All Tools
+                </div>
+              </a>
+            </div>
+            <div>&nbsp;</div>
          </div>
 
          </div>

@@ -8,6 +8,7 @@ from zope.schema.vocabulary import SimpleVocabulary, SimpleTerm
 from Acquisition import aq_inner
 from Products.CMFCore.utils import getToolByName
 
+from plone import api
 from plone.dexterity.content import Container
 from plone.dexterity.utils import createContentInContainer
 from plone.directives import dexterity, form
@@ -65,9 +66,12 @@ class DrawerView(grok.View):
         context = aq_inner(self.context)
         catalog = getToolByName(context, 'portal_catalog')
     
-        return context.listFolderContents(contentFilter={
-                       "object_provides" : IDrawer.__identifier__,
-                       })
+        return context.listFolderContents(contentFilter={ 
+                "object_provides" : IDrawer.__identifier__,
+                })
+
+    def isContributor(self):
+        return api.user.get_permissions(obj=self.context).get('Request review')
 
 
 class ToolView(grok.View):
@@ -82,11 +86,13 @@ class ToolView(grok.View):
 
         context = aq_inner(self.context)
         catalog = getToolByName(context, 'portal_catalog')
-    
-        return context.listFolderContents(contentFilter={
-                       "object_provides" : ITool.__identifier__,
-                       })
-
+         
+        path = context.getPhysicalPath()
+        path = '/'.join(path)
+        return catalog.searchResults(
+                path={'query': path},
+                object_provides=ITool.__identifier__,
+                )
 
 class LoadView(grok.View):
     """ loads tools the FHF google spreadsheet """
