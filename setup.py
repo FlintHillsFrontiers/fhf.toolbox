@@ -29,6 +29,7 @@ setup(name='fhf.toolbox',
           'plone.app.dexterity [grok, relations]',
           'plone.app.relationfield',
           'plone.namedfile [blobs]',
+          'plone.api',
           'collective.js.jqueryui',
           'gspread',
           # -*- Extra requirements: -*-
