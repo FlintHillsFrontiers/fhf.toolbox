@@ -65,6 +65,7 @@
 }
 
 .tool-list .votes {
+    display: none;
     float: right;
     margin-left: 1%;
 }
@@ -78,6 +79,7 @@
 }
 
 .tool-bubble .votes {
+    display: none;
     float: right;
 }
 
