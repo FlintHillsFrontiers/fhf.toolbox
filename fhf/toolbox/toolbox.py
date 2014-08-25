@@ -54,7 +54,7 @@ class Toolbox(Container):
 
 
 class DrawerView(grok.View):
-    """ view drawers in filter-able summary"""
+    """ view drawers in filter-able summary """
 
     grok.context(IToolbox)
     grok.require('zope2.View')
@@ -71,6 +71,10 @@ class DrawerView(grok.View):
                 })
 
     def isContributor(self):
+        """ used toggle display of Contributor Tools section """
+        if api.user.is_anonymous():
+            return False
+
         return api.user.get_permissions(obj=self.context).get('Request review')
 
 
