@@ -149,26 +149,24 @@
     
       </div>
   
-      
-      <div class="wrapper row" tal:condition="context/overview">
+      <div class="wrapper row" tal:condition="nocall:context/overview">
       <h3>Description</h3>  
-        <div tal:content="structure context/overview/output">
+      <div tal:content="structure python:context.overview.output_relative_to(context)">
           Description
         </div>
       </div>
-  
       
-      <div class="wrapper row" tal:condition="context/background">
+      <div class="wrapper row" tal:condition="nocall:context/background">
         <h3>Background</h3>
-        <div id="background" tal:content="structure context/background/output">
+        <div id="background" tal:content="structure python:context.background.output_relative_to(context)">
           Background
         </div>
       </div>
   
       
-      <div class="wrapper row" tal:condition="context/info">
+      <div class="wrapper row" tal:condition="nocall:context/info">
         <h3>Additional Information</h3>
-        <div id="info" tal:content="structure context/info/output">
+        <div id="info" tal:content="structure python:context.info.output_relative_to(context)">
           Info
         </div>
       </div>
@@ -179,9 +177,9 @@
       <hr class="row">
   
       
-      <div class="wrapper row" tal:condition="context/partners">
+      <div class="wrapper row" tal:condition="nocall:context/partners">
         <h3>Champions and Partners</h3>
-        <div id="partners" tal:content="structure context/partners/output">
+        <div id="partners" tal:content="structure python:context.partners.output_relative_to(context)">
           Partners
         </div>
       </div>
@@ -203,21 +201,21 @@
       </div>
   
       
-      <div class="wrapper row" tal:condition="context/cost">
+      <div class="wrapper row" tal:condition="nocall:context/cost">
         <h3>Cost Details</h3>
-        <div id="cost" tal:content="structure context/cost/output">
+        <div id="cost" tal:content="structure python:context.cost.output_relative_to(context)">
           Cost
         </div>
       </div>
 
-      <div class="wrapper row" tal:condition="context/funding">
+      <div class="wrapper row" tal:condition="nocall:context/funding">
         <h3>Funding Sources</h3>
-        <div id="funding" tal:content="structure context/funding/output">
+        <div id="funding" tal:content="structure python:context.funding.output_relative_to(context)">
           Funding
         </div>
       </div>
   
-      <div class="wrapper row" tal:condition="context/steps">
+      <div class="wrapper row" tal:condition="nocall:context/steps">
             
         <h3>Implementation Details</h3>
         <p>A brief outline of the first few steps necessary for implementation
@@ -226,7 +224,7 @@
            valid.
         </p>
         <div class="wrapper"> 
-          <div id="steps" tal:content="structure context/steps/output">
+          <div id="steps" tal:content="structure python:context.steps.output_relative_to(context)">
             Step
           </div>
         </div>
@@ -234,22 +232,25 @@
     </div> <!-- end of implementation -->
 
     <div id="case_study">
-      <div class="wrapper" tal:condition="context/cs_description">
+      <div class="wrapper" tal:condition="nocall:context/cs_description">
             <a id="casestudy"></a>
         <h2 class="row">Case Study</h2>
         <hr class="row">
   
         <h3 class="row" tal:content="context/cs_title">Title</h3>
         <div class="description row" 
-             tal:content="structure context/cs_description/output">
+        <div tal:content="structure python:context.cs_description.output_relative_to(context)">
+          <!--
+        <div tal:content="structure context/@@text-transform/cs_description/text/html">
+          -->
           Description
         </div>
   
         
-        <div class="wrapper row" tal:condition="context/cs_relavance">
+        <div class="wrapper row" tal:condition="nocall:context/cs_relavance">
           <h3>Relevance</h3>
           <div id="cs_relavance" 
-               tal:content="structure context/cs_relavance/output">
+               tal:content="structure python:context.cs_relavance.output_relative_to(context)">
             Relevance
           </div>
         </div>

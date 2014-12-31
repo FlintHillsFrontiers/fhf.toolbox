@@ -35,14 +35,12 @@
       </div>
 
       <div >
-        <div tal:condition="t/overview"
-             tal:content="structure t/overview/output">Description
-             
+        <div tal:condition="nocall:t/overview"
+             tal:content="structure python:t.overview.output_relative_to(context)">Description
         </div>
         <a class="more" tal:attributes="href t/absolute_url">Learn More</a>
-       
-        
       </div>
+
     </tal:block>
   </div>
 </div>
