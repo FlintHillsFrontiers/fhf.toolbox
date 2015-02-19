@@ -19,8 +19,9 @@ from plone.namedfile.interfaces import IImageScaleTraversable
 from z3c.relationfield.schema import RelationList, RelationChoice
 from plone.formwidget.contenttree import ObjPathSourceBinder
 
-
 from fhf.toolbox import MessageFactory as _
+
+from htmltruncate import truncate
 
 
 # Interface class; used to define content-type schema.
@@ -142,9 +143,8 @@ class ShortView(grok.View):
     bubbleTemplate = grok.PageTemplateFile("tool_templates/bubbleview.pt")
 
     def shortDesc(self, description):
-        d = description.split()
-        if len(d) > 100:
-            description = ' '.join(d[:100]) + '...'
+        if len(description) > 500:
+            description = truncate(description, 500, ellipsis='...')
 
         return description
 
