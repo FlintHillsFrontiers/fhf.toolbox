@@ -94,7 +94,7 @@ class ToolView(grok.View):
         path = context.getPhysicalPath()
         path = '/'.join(path)
         return catalog.searchResults(
-                path={'query': path},
+                path={'query': path, 'depth': 1},
                 object_provides=ITool.__identifier__,
                 )
 
