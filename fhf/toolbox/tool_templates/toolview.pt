@@ -7,9 +7,9 @@
       i18n:domain="fhf.toolbox">
 <head>
   <metal:slot metal:fill-slot="style_slot">
-    <link rel="stylesheet" type="text/css" media="screen"
+    <link rel="stylesheet" type="text/css" class="required"
           href="++resource++fhf.toolbox/toolview.css"/>
-    <link rel="stylesheet" type="text/css" media="screen"
+    <link rel="stylesheet" type="text/css" class="required"
           href="++resource++fhf.toolbox/rateit.css"/>
   </metal:slot>
 
